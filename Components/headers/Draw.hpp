@@ -7,9 +7,15 @@
 using namespace std;
 
 // Includes
-#include "./Structures/Coordinates.cpp"
+#include "../Structures/Coordinates.cpp"
+#include "../Structures/Image.cpp"
+
 
 class Draw
 {
     Coordinates location;
+    Image image;
+
+    //public:
+
 };

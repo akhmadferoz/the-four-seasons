@@ -89,10 +89,9 @@ bool Game::loadMedia()
 	assets = loadTexture("./Assets/images/mon2_sprite_base.png");
 	ground = loadTexture("./Assets/images/ground.png");
 	gTexture = loadTexture("./Assets/images/bgSow.png");
-	player = loadTexture("./Assets/images/mon2_sprite_base.png");
 	bgMusic = Mix_LoadMUS("./Assets/audio/snowflake-waltz.mp3");
 
-	if (assets == NULL || gTexture == NULL || ground == NULL || player == NULL)
+	if (assets == NULL || gTexture == NULL || ground == NULL )
 	{
 		printf("Unable to run due to error: %s\n", SDL_GetError());
 		return false;
@@ -123,7 +122,7 @@ void Game::run()
 			//Check if user requests quit
 			if (e.type == SDL_QUIT)
 			{
-				break;
+				return;
 			}
 		}
 
@@ -136,7 +135,7 @@ void Game::run()
 		SDL_RenderClear(gRenderer);						 //This removes each and everything from the renderer
 		SDL_RenderCopy(gRenderer, gTexture, NULL, NULL); //This draws the background to the renderer
 		SDL_RenderCopy(gRenderer, ground, NULL, NULL);
-		SDL_RenderCopy(gRenderer, player, &player_srcRect, &player_moverRect);
+		//SDL_RenderCopy(gRenderer, player, &player_srcRect, &player_moverRect);
 		//The objects shall be drawn here
 		SDL_RenderPresent(gRenderer); //This displays the updated renderer
 		SDL_Delay(200);
@@ -151,8 +150,8 @@ void Game::close()
 	SDL_DestroyTexture(ground);
 	ground = NULL;
 	SDL_DestroyTexture(gTexture);
-	player = NULL;
-	SDL_DestroyTexture(player);
+	//player = NULL;
+	//SDL_DestroyTexture(player);
 
 	//Destroy window
 	SDL_DestroyRenderer(gRenderer);
