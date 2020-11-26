@@ -1,5 +1,6 @@
 // Includes
-#include "./headers/Game.hpp"
+#include "../headers/Game.hpp"
+#include <string>
 
 bool Game::init()
 {
@@ -93,11 +94,13 @@ bool Game::loadMedia()
 
 	//Load the success flag
 	bool success = true;
+	//std::string assetFolder = ";
 
-	assets = loadTexture("assets/mon2_sprite_base.png");
-	ground = loadTexture("assets/ground.png");
-	gTexture = loadTexture("assets/snow.png");
-	player = loadTexture("assets/mon2_sprite_base.png");
+
+	assets = loadTexture("./Assets/images/mon2_sprite_base.png");
+	ground = loadTexture("./Assets/images/ground.png");
+	gTexture = loadTexture("./Assets/images/bgSow.png");
+	player = loadTexture("./Assets/images/mon2_sprite_base.png");
 
 	if (assets == NULL || gTexture == NULL || ground == NULL || player == NULL)
 	{
@@ -105,7 +108,7 @@ bool Game::loadMedia()
 		success = false;
 	}
 
-	bgMusic = Mix_LoadMUS("snowflake-waltz.mp3");
+	bgMusic = Mix_LoadMUS("./Assets/audio/snowflake-waltz.mp3");
 
 	if (bgMusic == NULL)
 	{
