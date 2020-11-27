@@ -1,5 +1,6 @@
-struct Image{
-    int x, y, width, height; 
+class Image{
+    int x, y, width, height;
+    //Texture property 
 public:
     Image(int x, int y, int width, int height){
         this -> x = x;
@@ -8,4 +9,5 @@ public:
         this -> height = height;
 
     }
+    //Setter function ("Name")
 };

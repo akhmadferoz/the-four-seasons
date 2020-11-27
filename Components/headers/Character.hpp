@@ -1,7 +1,6 @@
 #include "../structures/Image.cpp"
-#pragma once
 
-class Character{
+class Character: public Draw{
     Image image;
     int maxLife;
     int score;

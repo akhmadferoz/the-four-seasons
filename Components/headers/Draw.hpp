@@ -12,7 +12,11 @@ using namespace std;
 class Draw
 {
     Coordinates location;
+    //Animation animation;
+    //Image:
+    //Render Object
+public:
+   // animateObjectTo(){}
 
-    //public:
-
+    //Function to render the image
 };

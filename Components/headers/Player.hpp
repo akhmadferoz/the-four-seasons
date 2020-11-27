@@ -1,6 +1,6 @@
 #include "Character.hpp"
 #include "Draw.hpp"
 
-class Player: public Draw{
+class Player{
     Character character;
 };
