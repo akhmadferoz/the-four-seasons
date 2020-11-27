@@ -10,8 +10,8 @@
 class Game
 {
     //Screen dimension constants
-    const int SCREEN_WIDTH = 1000;
-    const int SCREEN_HEIGHT = 600;
+    const int SCREEN_WIDTH = 1024;
+    const int SCREEN_HEIGHT = 800;
 
     //The window we'll be rendering to
     SDL_Window *gWindow = NULL;
@@ -24,9 +24,9 @@ class Game
     //global reference to png image sheets
     SDL_Texture *assets = NULL;
     SDL_Texture *ground = NULL;
-    SDL_Texture *player = NULL;
-    SDL_Rect const player_srcRect = {86, 147, 24, 42};
-    SDL_Rect const player_moverRect = {100, 450, 48, 84};
+    
+  //  SDL_Rect const player_srcRect = {86, 147, 24, 42};
+   // SDL_Rect const player_moverRect = {100, 450, 48, 84};
 
     Mix_Music *bgMusic = NULL;
 
@@ -36,4 +36,7 @@ public:
     void close();
     SDL_Texture *loadTexture(std::string path);
     void run();
+
+    
+
 };
