@@ -12,6 +12,8 @@ bool Game::init()
 		return false;
 	}
 
+	
+
 	//Set texture filtering to linear
 	if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
 	{
@@ -83,16 +85,14 @@ SDL_Texture *Game::loadTexture(std::string path)
 	return newTexture;
 }
 
-bool Game::loadMedia()
-{
+bool Game::loadMedia(){
 
 	assets = loadTexture("./Assets/images/mon2_sprite_base.png");
 	ground = loadTexture("./Assets/images/ground.png");
 	gTexture = loadTexture("./Assets/images/bgSow.png");
 	bgMusic = Mix_LoadMUS("./Assets/audio/snowflake-waltz.mp3");
 
-	if (assets == NULL || gTexture == NULL || ground == NULL )
-	{
+	if (assets == NULL || gTexture == NULL || ground == NULL ){
 		printf("Unable to run due to error: %s\n", SDL_GetError());
 		return false;
 	}
@@ -132,14 +132,20 @@ void Game::run()
 			Mix_PlayMusic(bgMusic, 2);
 		}
 
-		SDL_RenderClear(gRenderer);						 //This removes each and everything from the renderer
-		SDL_RenderCopy(gRenderer, gTexture, NULL, NULL); //This draws the background to the renderer
-		SDL_RenderCopy(gRenderer, ground, NULL, NULL);
+		
+		SDL_RenderClear(gRenderer);	 //This removes each and everything from the renderer
+		Game::renderObjects();					
+	//	SDL_RenderCopy(gRenderer, gTexture, NULL, NULL); //This draws the background to the renderer
+	//	SDL_RenderCopy(gRenderer, ground, NULL, NULL);
 		//SDL_RenderCopy(gRenderer, player, &player_srcRect, &player_moverRect);
 		//The objects shall be drawn here
 		SDL_RenderPresent(gRenderer); //This displays the updated renderer
 		SDL_Delay(200);
 	}
+}
+
+void Game::renderObjects(){
+	
 }
 
 void Game::close()
