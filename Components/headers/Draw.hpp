@@ -12,13 +12,16 @@ using namespace std;
 
 class Draw
 {
-    Coordinates location;
-    Image *image;
-    SDL_Renderer *renderer;
-    //Animation animation;
-    //Image:
-    //Render Object
+
+
+
 public:
+    SDL_Rect location;
+        Image *image;
+    SDL_Renderer *renderer;
+    
+    Draw();
+    Draw(SDL_Rect,Image *,SDL_Renderer *);
     void drawObject();
    // animateObjectTo(){}
 

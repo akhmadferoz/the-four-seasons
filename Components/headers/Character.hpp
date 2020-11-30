@@ -1,7 +1,14 @@
 #include "Draw.hpp"
 
 class Character: public Draw{
-    Image image;
+
+
     int maxLife;
     int score;
+
+public:
+    enum CharacterType {MainCharacter};
+    Character(CharacterType, SDL_Rect, SDL_Renderer *);
+    
 }; 
+

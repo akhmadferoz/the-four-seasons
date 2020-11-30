@@ -6,6 +6,9 @@
 #include <string>
 #include <stdlib.h>
 #include <time.h>
+#include <vector>
+
+#include "./Character.hpp"
 
 class Game
 {
@@ -29,6 +32,7 @@ class Game
    // SDL_Rect const player_moverRect = {100, 450, 48, 84};
 
     Mix_Music *bgMusic = NULL;
+    std::vector<Draw*> objects;
 
 public:
     bool init();
@@ -37,6 +41,7 @@ public:
     SDL_Texture *loadTexture(std::string path);
     void run();
     void renderObjects();
+    void addObjects();
 
     
 

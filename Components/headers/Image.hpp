@@ -1,16 +1,16 @@
-#include "../Structures/Coordinates.cpp"
 
 #include <SDL.h>
 #include <SDL_image.h>
 #include <string>
-#include <list>
+#include <vector>
+#include <iostream>
 
 
 class Image
 {
 
-    int width, height;
-    std::list<Coordinates> coordinates;
+ 
+    std::vector<SDL_Rect *> coordinates;
     std::string name = "";
     std::string basePath = "./Assets/images/";
 
@@ -21,15 +21,15 @@ class Image
 
 
 public:
-    SDL_Rect currentRect = {0,0,0,0};
+   // SDL_Rect currentRect = {0,0,0,0};
 
 
 
     void loadTexture(SDL_Renderer *gRenderer );
-    Image(Coordinates coordinates, int width, int height);
-    Image(Coordinates coordinates, int width, int height, std::string name);
+    Image(SDL_Rect *coordinates);
+    Image(SDL_Rect *coordinates, std::string name);
     
-    void getAssetRectangle();
+    SDL_Rect *getAssetRectangle();
     
     SDL_Texture *getTexture();
 };

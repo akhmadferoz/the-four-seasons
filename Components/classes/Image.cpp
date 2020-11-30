@@ -1,13 +1,13 @@
 #include "../headers/Image.hpp"
 
 
-    Image::Image(Coordinates coordinates, int width, int height)
+    Image::Image(SDL_Rect *coordinates)
     {
         this->coordinates.push_back(coordinates);
-        this->width = width;
-        this->height = height;
+        
+
     }
-    Image::Image(Coordinates coordinates, int width, int height, std::string name):Image(coordinates,width,height){
+    Image::Image(SDL_Rect *coordinates, std::string name):Image(coordinates){
         this -> name = name;
 
     }
@@ -16,18 +16,23 @@
         return Image::texture;
     }
 
-    void Image::getAssetRectangle(){
+    SDL_Rect *Image::getAssetRectangle(){
         if (Image::animating){
             //Add next image code
         }
-        auto coordinates = Image::coordinates.front();
-        Image::currentRect =  {(coordinates.x),(coordinates.y),Image::width, Image::height};
+
+        std::cout << "GOT COORDINATES" << Image::coordinates.size();
+        auto coordinates = Image::coordinates[0];
+        //std::cout << "GOT COORDINATES" << Image::coordinates.empty();
+        //Image::currentRect =  coordinates;
+        return coordinates;
     }
 
 
     void Image::loadTexture(SDL_Renderer *gRenderer )
     {
         std::string path = Image::basePath + Image::name;
+        std::cout << "PATH: " << path << std::endl;
         //Final Texture
         SDL_Texture *newTexture = NULL;
 

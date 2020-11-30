@@ -109,6 +109,7 @@ bool Game::loadMedia(){
 void Game::run()
 {
 
+	Game::addObjects();
 	//bool quit;
 	SDL_Event e;
 
@@ -144,8 +145,17 @@ void Game::run()
 	}
 }
 
+void Game::addObjects(){
+	Character *player = new Character(Character::MainCharacter, {100, 450, 48, 84},gRenderer);
+	objects.push_back(player);
+}
+
 void Game::renderObjects(){
-	
+	for (Draw *object : Game::objects){
+		object -> drawObject();
+		//cout << "HELLLO " <<object ->location.w<< endl;
+
+	}
 }
 
 void Game::close()
