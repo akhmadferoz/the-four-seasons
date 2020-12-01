@@ -6,6 +6,12 @@
 #include <string>
 #include <stdlib.h>
 #include <time.h>
+#include <vector>
+#include <thread>
+#include <SDL_thread.h>
+
+#include "../structures/GameState.cpp"
+#include "../headers/Player.hpp"
 
 class Game
 {
@@ -20,15 +26,22 @@ class Game
     SDL_Renderer *gRenderer = NULL;
 
     //Current displayed texture
-    SDL_Texture *gTexture = NULL;
-    //global reference to png image sheets
-    SDL_Texture *assets = NULL;
-    SDL_Texture *ground = NULL;
+    // SDL_Texture *gTexture = NULL;
+    // //global reference to png image sheets
+    // SDL_Texture *assets = NULL;
+    // SDL_Texture *ground = NULL;
     
   //  SDL_Rect const player_srcRect = {86, 147, 24, 42};
    // SDL_Rect const player_moverRect = {100, 450, 48, 84};
 
     Mix_Music *bgMusic = NULL;
+    
+    Player *player;
+    std::vector<Draw*> background_objects;
+    std::vector<Destructible*> destructibles;
+
+
+    GameState gameMode;
 
 public:
     bool init();
@@ -36,7 +49,9 @@ public:
     void close();
     SDL_Texture *loadTexture(std::string path);
     void run();
-
+    void renderObjects();
+    void addObjects();
+    void createObstacles();
     
 
 };

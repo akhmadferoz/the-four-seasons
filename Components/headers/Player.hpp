@@ -1,5 +1,15 @@
+
+#ifndef CHARACTER
+#define CHARACTER
 #include "Character.hpp"
+#endif
 
 class Player{
-    Character character;
+
+public:
+    Player(Character *);
+    Character *character;
+
+
+    
 };

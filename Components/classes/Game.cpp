@@ -86,16 +86,15 @@ SDL_Texture *Game::loadTexture(std::string path)
 bool Game::loadMedia()
 {
 
-	assets = loadTexture("./Assets/images/mon2_sprite_base.png");
-	ground = loadTexture("./Assets/images/ground.png");
-	gTexture = loadTexture("./Assets/images/bgSow.png");
+	// assets = loadTexture("./Assets/images/mon2_sprite_base.png");
+	// ground = loadTexture("./Assets/images/ground.png");
+	// gTexture = loadTexture("./Assets/images/bgSow.png");
 	bgMusic = Mix_LoadMUS("./Assets/audio/snowflake-waltz.mp3");
 
-	if (assets == NULL || gTexture == NULL || ground == NULL )
-	{
-		printf("Unable to run due to error: %s\n", SDL_GetError());
-		return false;
-	}
+	// if (assets == NULL || gTexture == NULL || ground == NULL ){
+	// 	printf("Unable to run due to error: %s\n", SDL_GetError());
+	// 	return false;
+	// }
 
 	if (bgMusic == NULL)
 	{
@@ -109,6 +108,7 @@ bool Game::loadMedia()
 void Game::run()
 {
 
+	Game::addObjects();
 	//bool quit;
 	SDL_Event e;
 
@@ -132,9 +132,10 @@ void Game::run()
 			Mix_PlayMusic(bgMusic, 2);
 		}
 
-		SDL_RenderClear(gRenderer);						 //This removes each and everything from the renderer
-		SDL_RenderCopy(gRenderer, gTexture, NULL, NULL); //This draws the background to the renderer
-		SDL_RenderCopy(gRenderer, ground, NULL, NULL);
+		SDL_RenderClear(gRenderer); //This removes each and everything from the renderer
+		Game::renderObjects();
+		//	SDL_RenderCopy(gRenderer, gTexture, NULL, NULL); //This draws the background to the renderer
+		//	SDL_RenderCopy(gRenderer, ground, NULL, NULL);
 		//SDL_RenderCopy(gRenderer, player, &player_srcRect, &player_moverRect);
 		//The objects shall be drawn here
 		SDL_RenderPresent(gRenderer); //This displays the updated renderer
@@ -142,16 +143,82 @@ void Game::run()
 	}
 }
 
+void Game::addObjects()
+{
+	SDL_Rect *location = new SDL_Rect({100, 450, 48, 84});
+	Character *character = new Character(gameMode.character, location, gRenderer);
+	player = new Player(character);
+
+	Image *image = new Image(NULL, "bgSow.png");
+	Draw *bg = new Draw(gRenderer, image, NULL);
+
+	background_objects.push_back(bg);
+}
+
+void Game::createObstacles()
+{
+	static int count = 0;
+	int freq = rand() % 100;
+	if (count % 20 == 0 && freq < 70)
+	{
+		Destructible *des = new Destructible(Destructible::Zombie, gRenderer);
+		destructibles.push_back(des);
+	}
+	count += 1;
+}
+
+void Game::renderObjects()
+{
+
+	//for (int x =0; x< 4;x++){
+
+	//}
+	createObstacles();
+
+	
+
+	for (Draw *object : Game::background_objects)
+	{
+
+		object->drawObject();
+	}
+
+	vector<int> invalidObjects;
+	for (int x=0; x<destructibles.size();x++)
+	{
+		Destructible *object = destructibles[x];
+		if (object -> isInValid()){
+			invalidObjects.push_back(x);
+			// destructibles.
+			// delete object;
+			continue;
+		}
+
+		object->drawObject();
+	}
+
+	for(int index: invalidObjects){
+		Destructible *object = destructibles[index];
+		delete object;
+		destructibles.erase(destructibles.begin()+ index);
+	}
+
+	player->character->drawObject();
+}
+
 void Game::close()
 {
-	//Free loaded images
-	SDL_DestroyTexture(assets);
-	assets = NULL;
-	SDL_DestroyTexture(ground);
-	ground = NULL;
-	SDL_DestroyTexture(gTexture);
-	//player = NULL;
-	//SDL_DestroyTexture(player);
+	delete player;
+	//Delete all renderable objects
+	for (Draw *obj : background_objects)
+	{
+		delete obj;
+	}
+
+	for (Destructible *obj : destructibles)
+	{
+		delete obj;
+	}
 
 	//Destroy window
 	SDL_DestroyRenderer(gRenderer);

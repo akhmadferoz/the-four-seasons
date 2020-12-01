@@ -6,17 +6,27 @@
 using namespace std;
 
 // Includes
-#include "../Structures/Coordinates.cpp"
+#include "../headers/Image.hpp"
+
 
 
 class Draw
 {
-    Coordinates location;
-    //Animation animation;
-    //Image:
-    //Render Object
-public:
-   // animateObjectTo(){}
 
-    //Function to render the image
+
+
+public:
+    SDL_Rect *location;
+    Image *image;
+    SDL_Renderer *renderer;
+
+    Draw(SDL_Renderer *, Image *, SDL_Rect *);     
+
+   
+
+
+    Draw();
+    void drawObject();
+    ~Draw();
+
 };
