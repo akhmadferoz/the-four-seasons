@@ -36,12 +36,15 @@ Image::~Image(){
     }
 
     SDL_Rect *Image::getAssetRectangle(){
-       // std::cout << "kkkkk" << std::endl;
+        if(!secondCoordinates.empty()){
+            return playAnimation();
+        }
+
+
         if (Image::animating){
            
              auto coordinates = Image::coordinates[ animationIndex % this -> coordinates.size()];
                      animationIndex += 1;
-        std::cout << "ANIAMTING" << std::endl;
         return coordinates;
 
         }
@@ -51,7 +54,33 @@ Image::~Image(){
     }
 
 
+
 //---------------Functions
+    void Image::animateImage(std::vector<SDL_Rect *> vec){
+        secondCoordinates = vec;
+    }
+
+    SDL_Rect *Image::playAnimation(){
+        static int index = 0;
+        
+        auto coordinates = secondCoordinates[ index % secondCoordinates.size()];
+        index += 1;
+
+        if (index == secondCoordinates.size()){
+            endAnimation();
+            index = 0;
+        }
+        return coordinates;
+    }
+
+    void Image::endAnimation(){
+        for (int x =0;x<secondCoordinates.size();x++){
+            delete secondCoordinates[x];
+        }
+        secondCoordinates.clear();
+    }
+
+
     void Image::loadTexture(SDL_Renderer *gRenderer )
     {
         std::string path = Image::basePath + Image::name;

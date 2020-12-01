@@ -142,7 +142,12 @@ void Game::run()
 			if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_UP ) {
 			
 				player -> jump();
-			}	
+			}
+
+			if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE ) {
+			
+				player -> attack();
+			}		
 
 		}
 
@@ -165,7 +170,7 @@ void Game::run()
 
 void Game::addObjects()
 {
-	SDL_Rect *location = new SDL_Rect({100, 450, 48, 84});
+	SDL_Rect *location = new SDL_Rect({100, 700, 48, 84});
 	Character *character = new Character(gameMode.character, location, gRenderer);
 	player = new Player(character);
 
@@ -179,7 +184,7 @@ void Game::createObstacles()
 {
 	static int count = 0;
 	int freq = rand() % 100;
-	if (count % 10 == 0 && freq < 70)
+	if (count % 10 == 0 && freq < 60)
 	{
 		Destructible *des = new Destructible(Destructible::Zombie, gRenderer);
 		destructibles.push_back(des);
@@ -201,6 +206,9 @@ void Game::renderObjects()
 	{
 
 		object->drawObject();
+		
+
+
 	}
 
 	vector<int> invalidObjects;
@@ -215,6 +223,10 @@ void Game::renderObjects()
 		}
 
 		object->drawObject();
+		if(player -> character -> didCollide(object)){
+			std::cout <<"THE ENDDDD"<< endl;
+		}
+		
 	}
 
 	for(int index: invalidObjects){

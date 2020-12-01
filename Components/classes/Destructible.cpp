@@ -5,9 +5,9 @@
 Destructible::Destructible(Type type, SDL_Renderer *renderer){
 
 
-    SDL_Rect *objectLocation = new SDL_Rect({1024, 450, 48, 84});
+    SDL_Rect *objectLocation = new SDL_Rect({1024, 700, 60, 60});
     
-    Image *image = new Image(NULL, "o_lighthouse.png");
+    Image *image = new Image(NULL, "d.png");
 
     this -> location = objectLocation;
     Draw::location = objectLocation;
@@ -20,7 +20,6 @@ Destructible::Destructible(Type type, SDL_Renderer *renderer){
 
 void Destructible::drawObject(){
     Draw::drawObject();
-    std::cout << "YOOOOOOOO" << std::endl;
     location -> x -= speed;
 }
 

@@ -23,7 +23,7 @@ public:
     Draw(SDL_Renderer *, Image *, SDL_Rect *);     
 
    
-
+    bool didCollide(Draw *obj);
 
     Draw();
     void drawObject();
