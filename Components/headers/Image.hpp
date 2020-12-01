@@ -8,13 +8,17 @@
 
 class Image
 {
+    SDL_Texture *texture = NULL;
 
  
-    std::vector<SDL_Rect *> coordinates;
     std::string name = "";
     std::string basePath = "./Assets/images/";
 
-    SDL_Texture *texture = NULL;
+    std::vector<SDL_Rect *> coordinates;
+    std::vector<SDL_Rect *> secondCoordinates;
+    SDL_Rect *playAnimation();
+    void endAnimation();
+
 
     bool animating = true;
     int animationIndex = 0;
@@ -36,5 +40,6 @@ public:
     SDL_Texture *getTexture();
 
 
+    void animateImage(std::vector<SDL_Rect *>);
     ~Image();
 };

@@ -5,7 +5,7 @@ Player::Player(Character *chr){
 }
 
 void Player::render(){
-    if (jumpingSeconds == 2){
+    if (jumpingSeconds == jumpTime){
         character -> location -> y += 90;
         jumpingSeconds = -1;
     }
@@ -22,7 +22,6 @@ void Player::render(){
      if (move == LEFT){
         character -> location -> x -= 20;
     }   
-    std::cout << "Jumping seconds "<< jumpingSeconds << std::endl;
     this -> character -> drawObject();
     
 }
@@ -32,3 +31,22 @@ void Player::jump(){
     character ->  location -> y -= 90;
     jumpingSeconds = 0;
 }
+
+void Player::attack(){
+
+
+    SDL_Rect rects[] = {{32, 97, 15, 19},
+{50, 98, 24, 18},
+{78, 98, 27, 18}
+};
+
+    std::vector<SDL_Rect *> assetLocations;
+    for (SDL_Rect rect : rects)
+    {
+        SDL_Rect *imageLocation = new SDL_Rect(rect);
+        assetLocations.push_back(imageLocation);
+    }
+
+    character -> image -> animateImage(assetLocations);
+}
+

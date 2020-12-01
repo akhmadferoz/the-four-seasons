@@ -4,16 +4,11 @@
 Character::Character(Type type, SDL_Rect *location, SDL_Renderer *renderer)
 {
 
-    SDL_Rect rects[] = {{22, 20, 26, 41},
-                        {87, 22, 25, 39},
-                        {150, 20, 26, 41},
-                        {212, 19, 27, 42},
-                        {22, 84, 26, 41},
-                        {89, 84, 24, 41},
-                        {152, 85, 25, 40},
-                        {212, 84, 26, 41},
-                        {22, 148, 26, 41},
-                        {86, 147, 24, 42}};
+    SDL_Rect rects[] = {{34, 5, 15, 19},
+{50, 5, 15, 19},
+{66, 5, 15, 19},
+{82, 5, 15, 19}
+};
 
     std::vector<SDL_Rect *> assetLocations;
     for (SDL_Rect rect : rects)
@@ -22,7 +17,7 @@ Character::Character(Type type, SDL_Rect *location, SDL_Renderer *renderer)
         assetLocations.push_back(imageLocation);
     }
 
-    Image *image = new Image(assetLocations, "mon2_sprite_base.png");
+    Image *image = new Image(assetLocations, "c_knight.png");
     Draw::location = location;
     Draw::image = image;
     Draw::renderer = renderer;

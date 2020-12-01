@@ -1,7 +1,6 @@
 // Libraries
 #include <SDL.h>
 #include <SDL_image.h>
-#include <SDL_mixer.h>
 #include <iostream>
 #include <string>
 #include <stdlib.h>
@@ -10,8 +9,9 @@
 #include <thread>
 #include <SDL_thread.h>
 
-#include "../structures/GameState.cpp"
+#include "../classes/GameState.cpp"
 #include "../headers/Player.hpp"
+#include "../classes/SoundManager.cpp"
 
 class Game
 {
@@ -39,11 +39,12 @@ class Game
     Player *player;
     std::vector<Draw*> background_objects;
     std::vector<Destructible*> destructibles;
-
-
-    GameState gameMode;
+    SoundManager soundManager;
 
 public:
+	//GameState *gameState = gameState->getInstance();
+
+
     bool init();
     bool loadMedia();
     void close();

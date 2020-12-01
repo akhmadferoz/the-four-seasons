@@ -14,6 +14,14 @@ void Draw::drawObject(){
     
 }
 
+bool Draw::didCollide(Draw *obj){
+    auto objLocation = obj -> location;
+    if(objLocation->x >= location -> x && objLocation->x <= location -> x + location->w){
+        return objLocation->y >= location -> y && objLocation->y <= location -> y + location->h;
+    }
+    return false;
+}
+
 Draw::Draw(){}
 
 
