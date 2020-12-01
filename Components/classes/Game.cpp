@@ -124,6 +124,26 @@ void Game::run()
 			{
 				return;
 			}
+
+			if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RIGHT ) {
+				player -> move = Player::RIGHT;
+			}
+			if (e.type == SDL_KEYUP && e.key.keysym.sym == SDLK_RIGHT ) {
+				player -> move = Player::NONE;
+			}
+
+			if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_LEFT ) {
+				player -> move = Player::LEFT;
+			}
+			if (e.type == SDL_KEYUP && e.key.keysym.sym == SDLK_LEFT ) {
+				player -> move = Player::NONE;
+			}
+
+			if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_UP ) {
+			
+				player -> jump();
+			}	
+
 		}
 
 		if (Mix_PlayingMusic() == 0)
@@ -159,7 +179,7 @@ void Game::createObstacles()
 {
 	static int count = 0;
 	int freq = rand() % 100;
-	if (count % 20 == 0 && freq < 70)
+	if (count % 10 == 0 && freq < 70)
 	{
 		Destructible *des = new Destructible(Destructible::Zombie, gRenderer);
 		destructibles.push_back(des);
@@ -203,7 +223,7 @@ void Game::renderObjects()
 		destructibles.erase(destructibles.begin()+ index);
 	}
 
-	player->character->drawObject();
+	player->render();
 }
 
 void Game::close()

@@ -2,6 +2,7 @@
 #define DRAW
 #include "./Draw.hpp"
 #endif
+#include <vector>
 
 class Character: public Draw{
 
