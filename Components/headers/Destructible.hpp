@@ -6,7 +6,7 @@
 class Destructible: public Draw{
 
 public:
-    int speed = 10;
+    int speed = 15;
     enum Type {Zombie};
     void drawObject();
     Destructible(Type, SDL_Renderer *);

@@ -16,7 +16,7 @@ class Image
 
     SDL_Texture *texture = NULL;
 
-    bool animating = false;
+    bool animating = true;
     int animationIndex = 0;
 
 
@@ -27,6 +27,9 @@ public:
 
     void loadTexture(SDL_Renderer *gRenderer );
     Image(SDL_Rect *coordinates);
+
+    Image(std::vector<SDL_Rect *>,std::string name);
+
     Image(SDL_Rect *coordinates, std::string name);
     
     SDL_Rect *getAssetRectangle();

@@ -12,6 +12,11 @@
 
     }
 
+    Image::Image(std::vector<SDL_Rect *> coordinates, std::string name) {
+        this -> coordinates = coordinates;
+        this -> name = name;
+    }
+
 //---------------Destructors
 Image::~Image(){
     SDL_DestroyTexture(texture);
@@ -31,8 +36,14 @@ Image::~Image(){
     }
 
     SDL_Rect *Image::getAssetRectangle(){
+       // std::cout << "kkkkk" << std::endl;
         if (Image::animating){
-            //Add next image code
+           
+             auto coordinates = Image::coordinates[ animationIndex % this -> coordinates.size()];
+                     animationIndex += 1;
+        std::cout << "ANIAMTING" << std::endl;
+        return coordinates;
+
         }
 
         auto coordinates = Image::coordinates[0];

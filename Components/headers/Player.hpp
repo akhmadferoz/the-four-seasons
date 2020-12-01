@@ -7,9 +7,17 @@
 class Player{
 
 public:
-    Player(Character *);
+  enum MOVE{RIGHT, LEFT, NONE};
+
+    int jumpingSeconds = -1;
     Character *character;
+    MOVE move = NONE;
 
+    Player(Character *);
 
+    void render();
     
+    void jump();
+
+
 };

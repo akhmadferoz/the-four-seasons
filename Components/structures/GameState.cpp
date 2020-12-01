@@ -11,4 +11,5 @@
 
 struct GameState{
     Character::Type character = Character::MainCharacter;
+    
 };
