@@ -1,6 +1,8 @@
 #include "../headers/Character.hpp"
 
-Character::Character(CharacterType type, SDL_Rect location, SDL_Renderer *renderer){
+
+//---------------Constructors
+Character::Character(Type type, SDL_Rect *location, SDL_Renderer *renderer){
 
 
     SDL_Rect *imageLocation = new SDL_Rect({86, 147, 24, 42});
@@ -10,9 +12,8 @@ Character::Character(CharacterType type, SDL_Rect location, SDL_Renderer *render
     Draw::renderer = renderer;
 
      Draw::image ->loadTexture(renderer);
-        
-
-    
-
-    //Draw::(location,&image,renderer);
+   
 }
+
+
+

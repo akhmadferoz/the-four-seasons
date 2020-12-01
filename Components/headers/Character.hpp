@@ -1,4 +1,7 @@
-#include "Draw.hpp"
+#ifndef DRAW
+#define DRAW
+#include "./Draw.hpp"
+#endif
 
 class Character: public Draw{
 
@@ -7,8 +10,9 @@ class Character: public Draw{
     int score;
 
 public:
-    enum CharacterType {MainCharacter};
-    Character(CharacterType, SDL_Rect, SDL_Renderer *);
+    enum Type {MainCharacter};
+    Character(Type, SDL_Rect *, SDL_Renderer *);
+
     
 }; 
 

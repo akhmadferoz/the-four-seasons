@@ -30,6 +30,8 @@ public:
     Image(SDL_Rect *coordinates, std::string name);
     
     SDL_Rect *getAssetRectangle();
-    
     SDL_Texture *getTexture();
+
+
+    ~Image();
 };

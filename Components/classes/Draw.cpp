@@ -1,20 +1,22 @@
 #include "../headers/Draw.hpp"
 
 
- Draw::Draw(SDL_Rect location,Image *image,SDL_Renderer *renderer){
-     this -> location = location;
-     this -> image = image;
-     this -> renderer = renderer;
+Draw::Draw(SDL_Renderer *renderer, Image *image,  SDL_Rect *location){
+    this -> renderer = renderer;
+    this -> image = image;
+    this -> location = location;
+    image -> loadTexture(renderer);
+}    
 
-
- }
 
 void Draw::drawObject(){
-   // Draw::image -> getAssetRectangle();
-    SDL_Rect *displayOn = new SDL_Rect({100, 450, 48, 84});
-    SDL_RenderCopy(Draw::renderer, (Draw::image -> getTexture()), (Draw::image -> getAssetRectangle()), displayOn);
-    std::cout << "DRAWING " << (Draw::image -> getAssetRectangle() ->w) << endl;
-
+    SDL_RenderCopy(Draw::renderer, (Draw::image -> getTexture()), (Draw::image -> getAssetRectangle()), location);
+    
 }
 
 Draw::Draw(){}
+
+
+Draw::~Draw(){
+    std::cout << "BYEEEE" << std::endl;
+}

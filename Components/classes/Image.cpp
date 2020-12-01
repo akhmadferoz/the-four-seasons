@@ -1,6 +1,6 @@
 #include "../headers/Image.hpp"
 
-
+//---------------Constructors
     Image::Image(SDL_Rect *coordinates)
     {
         this->coordinates.push_back(coordinates);
@@ -12,6 +12,20 @@
 
     }
 
+//---------------Destructors
+Image::~Image(){
+    SDL_DestroyTexture(texture);
+
+    //Delete all coordinates SDL_Rects
+    for (SDL_Rect *rect: coordinates){
+        delete rect;
+    }
+}
+
+
+
+//---------------Getters
+
     SDL_Texture *Image::getTexture(){
         return Image::texture;
     }
@@ -21,14 +35,12 @@
             //Add next image code
         }
 
-        std::cout << "GOT COORDINATES" << Image::coordinates.size();
         auto coordinates = Image::coordinates[0];
-        //std::cout << "GOT COORDINATES" << Image::coordinates.empty();
-        //Image::currentRect =  coordinates;
         return coordinates;
     }
 
 
+//---------------Functions
     void Image::loadTexture(SDL_Renderer *gRenderer )
     {
         std::string path = Image::basePath + Image::name;

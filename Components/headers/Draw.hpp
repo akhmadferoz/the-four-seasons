@@ -16,14 +16,17 @@ class Draw
 
 
 public:
-    SDL_Rect location;
-        Image *image;
+    SDL_Rect *location;
+    Image *image;
     SDL_Renderer *renderer;
-    
-    Draw();
-    Draw(SDL_Rect,Image *,SDL_Renderer *);
-    void drawObject();
-   // animateObjectTo(){}
 
-    //Function to render the image
+    Draw(SDL_Renderer *, Image *, SDL_Rect *);     
+
+   
+
+
+    Draw();
+    void drawObject();
+    ~Draw();
+
 };
