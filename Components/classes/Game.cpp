@@ -89,18 +89,18 @@ bool Game::loadMedia()
 	// assets = loadTexture("./Assets/images/mon2_sprite_base.png");
 	// ground = loadTexture("./Assets/images/ground.png");
 	// gTexture = loadTexture("./Assets/images/bgSow.png");
-	bgMusic = Mix_LoadMUS("./Assets/audio/snowflake-waltz.mp3");
+	//bgMusic = Mix_LoadMUS("./Assets/audio/snowflake-waltz.mp3");
 
 	// if (assets == NULL || gTexture == NULL || ground == NULL ){
 	// 	printf("Unable to run due to error: %s\n", SDL_GetError());
 	// 	return false;
 	// }
 
-	if (bgMusic == NULL)
-	{
-		printf("Unable to load music: %s \n", Mix_GetError());
-		return false;
-	}
+	// if (bgMusic == NULL)
+	// {
+	// 	printf("Unable to load music: %s \n", Mix_GetError());
+	// 	return false;
+	// }
 
 	return true;
 }
@@ -142,11 +142,13 @@ void Game::run()
 			if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_UP ) {
 			
 				player -> jump();
+				soundManager.playEffect(SoundManager::JUMP);
 			}
 
 			if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE ) {
 			
 				player -> attack();
+				soundManager.playEffect(SoundManager::ATTACK);
 			}		
 
 		}
@@ -154,16 +156,14 @@ void Game::run()
 		if (Mix_PlayingMusic() == 0)
 		{
 			//Play the music
-			Mix_PlayMusic(bgMusic, 2);
+			//Mix_PlayMusic(bgMusic, 2);
+			soundManager.playMusic();
 		}
 
-		SDL_RenderClear(gRenderer); //This removes each and everything from the renderer
+		SDL_RenderClear(gRenderer); 
 		Game::renderObjects();
-		//	SDL_RenderCopy(gRenderer, gTexture, NULL, NULL); //This draws the background to the renderer
-		//	SDL_RenderCopy(gRenderer, ground, NULL, NULL);
-		//SDL_RenderCopy(gRenderer, player, &player_srcRect, &player_moverRect);
-		//The objects shall be drawn here
-		SDL_RenderPresent(gRenderer); //This displays the updated renderer
+
+		SDL_RenderPresent(gRenderer); 
 		SDL_Delay(200);
 	}
 }
@@ -171,10 +171,10 @@ void Game::run()
 void Game::addObjects()
 {
 	SDL_Rect *location = new SDL_Rect({100, 700, 48, 84});
-	Character *character = new Character(gameMode.character, location, gRenderer);
+	Character *character = new Character(Character::MainCharacter, location, gRenderer);
 	player = new Player(character);
 
-	Image *image = new Image(NULL, "bgSow.png");
+	Image *image = new Image(NULL, "game_background_2.png");
 	Draw *bg = new Draw(gRenderer, image, NULL);
 
 	background_objects.push_back(bg);
@@ -223,7 +223,7 @@ void Game::renderObjects()
 		}
 
 		object->drawObject();
-		if(player -> character -> didCollide(object)){
+		if(object  -> didCollide(player -> character)){
 			std::cout <<"THE ENDDDD"<< endl;
 		}
 		

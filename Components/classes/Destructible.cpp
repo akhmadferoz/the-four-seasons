@@ -7,7 +7,7 @@ Destructible::Destructible(Type type, SDL_Renderer *renderer){
 
     SDL_Rect *objectLocation = new SDL_Rect({1024, 700, 60, 60});
     
-    Image *image = new Image(NULL, "d.png");
+    Image *image = new Image(NULL, "d.jpg");
 
     this -> location = objectLocation;
     Draw::location = objectLocation;
