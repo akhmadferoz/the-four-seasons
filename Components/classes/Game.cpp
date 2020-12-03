@@ -103,14 +103,14 @@ void Game::run()
 			{
 				return;
 			}
-			
+
 			gamescreen -> inputHandler(e);
 
 		}
 
 		if (Mix_PlayingMusic() == 0)
 		{
-			SoundManager::playMusic();
+			bgMusic = SoundManager::playMusic();
 		}
 
 		SDL_RenderClear(gRenderer); 

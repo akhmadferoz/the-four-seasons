@@ -26,11 +26,11 @@ class SoundManager{
             
         }
 
-          static void playMusic(){
+          static Mix_Music *playMusic(){
                auto sound = Mix_LoadMUS("./Assets/audio/champion.mp3");
                 Mix_PlayMusic(sound, 1);
 
-            
+            return sound;
         }
         
 };
