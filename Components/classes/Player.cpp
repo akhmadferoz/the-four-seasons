@@ -16,10 +16,13 @@ void Player::render(){
 
 
     if (move == RIGHT){
+        if (character -> location -> x >= Constants::SCREEN_WIDTH - character -> location -> w){return;}
         character -> location -> x += 20;
     } 
 
      if (move == LEFT){
+        if (character -> location -> x <= 20){return;}
+       
         character -> location -> x -= 20;
     }   
     this -> character -> drawObject();
@@ -28,6 +31,8 @@ void Player::render(){
 
 void Player::jump(){
     if (jumpingSeconds != -1){return;}
+    SoundManager::playEffect(SoundManager::JUMP);
+
     character ->  location -> y -= 90;
     jumpingSeconds = 0;
 }

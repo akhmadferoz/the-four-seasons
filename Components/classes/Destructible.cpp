@@ -5,7 +5,7 @@
 Destructible::Destructible(Type type, SDL_Renderer *renderer){
 
 
-    SDL_Rect *objectLocation = new SDL_Rect({1024, 700, 60, 60});
+    SDL_Rect *objectLocation = new SDL_Rect({Constants::SCREEN_WIDTH, Constants::SCREEN_HEIGHT - 60, 60, 60});
     
     Image *image = new Image(NULL, "o_lighthouse.png");
 
