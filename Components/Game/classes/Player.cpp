@@ -5,7 +5,7 @@ Player::Player(Character *chr){
 }
 
 void Player::render(){
-    if (jumpingSeconds == jumpTime){
+    if (jumpingSeconds == airTime){
         character -> location -> y += 90;
         jumpingSeconds = -1;
     }
@@ -16,14 +16,16 @@ void Player::render(){
 
 
     if (move == RIGHT){
-        if (character -> location -> x >= Constants::SCREEN_WIDTH - character -> location -> w){return;}
-        character -> location -> x += 20;
+      
+        character -> location -> x += speed;
     } 
 
      if (move == LEFT){
-        if (character -> location -> x <= 20){return;}
+        if (character -> location -> x <= 0){
+           
+            return;}
        
-        character -> location -> x -= 20;
+        character -> location -> x -= speed;
     }   
     this -> character -> drawObject();
     

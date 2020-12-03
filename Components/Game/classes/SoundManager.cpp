@@ -16,6 +16,7 @@ class SoundManager{
                 break;
                 case JUMP:
                 name = "./Assets/audio/SFX_Jump_12.wav";
+                break;
                 case COLLIDE:
                 name = "./Assets/audio/cartoon-throw.wav";
                 break;

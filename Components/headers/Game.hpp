@@ -9,14 +9,9 @@
 #include <thread>
 #include <SDL_thread.h>
 
-#include "../headers/GameScreen.hpp"
+#include "../Game/headers/GameScreen.hpp"
 
 
-#ifndef DEFAULTS
-#define DEFAULTS
-#include "../structures/Constants.cpp"
-
-#endif
 
 
 

@@ -10,19 +10,19 @@ using namespace std;
 
 #ifndef DEFAULTS
 #define DEFAULTS
-#include "../structures/Constants.cpp"
+#include "../../structures/Constants.cpp"
 #include "../classes/SoundManager.cpp"
 
 #endif
-
-
 
 class Draw
 {
 
 
-
 public:
+
+
+
     SDL_Rect *location;
     Image *image;
     SDL_Renderer *renderer;
@@ -38,6 +38,7 @@ public:
 
     void printLocation();
 };
+
 
 
 

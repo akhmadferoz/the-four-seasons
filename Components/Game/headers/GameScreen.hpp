@@ -1,6 +1,7 @@
 #ifndef DRAW
 #define DRAW
 #include "./Draw.hpp"
+
 #endif
 
 
@@ -9,17 +10,20 @@
 #include "./HealthBar.hpp"
 
 
+
 class GameScreen{
 
 
     Player *player;
-    std::vector<Draw*> background_objects;
+    Draw *background;
+    //std::vector<Draw*> background_objects;
     std::vector<Destructible*> destructibles;
 
     HealthBar *healthBar;
 
     SDL_Renderer *gRenderer;
 
+    int gameClock = 1;
 
 public:
 
@@ -29,6 +33,7 @@ public:
     void renderObjects();
     void addObjects();
     void createObstacles();
-
+    void placeObstacles();
+    void adjustObjects();
     ~GameScreen();
 };
