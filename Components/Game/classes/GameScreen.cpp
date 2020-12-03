@@ -6,7 +6,10 @@ void GameScreen::addObjects()
 	Character *character = new Character(Character::MainCharacter, location, gRenderer);
 	player = new Player(character);
 
-	Image *image = new Image(NULL, "city.png");
+
+	GameState *s = s->getInstance();
+
+	Image *image = new Image(NULL, s -> backgrounds[s -> backgroundIndex]);
 	Draw *bg = new Draw(gRenderer, image, NULL);
 	background = bg;
 
@@ -68,7 +71,7 @@ void GameScreen::renderObjects()
 		if(player -> character  -> didCollide(object)){
 			
 			healthBar -> lostLife();
-			
+			object -> onHit();
 			
       		//invalidObjects.push_back(x);
 
@@ -106,13 +109,7 @@ void GameScreen::renderObjects()
 		  adjustObjects();
             }
 
-	// if(player -> move != Player::NONE){
-	// 	player -> character -> image -> animating = true;
-	// }else {
-	// 			// player -> character -> image -> animating = false;
-	// 			// player -> character -> image -> animationIndex = 0;
-
-	// }
+	
 }
 
 void GameScreen::inputHandler(SDL_Event e) {
@@ -146,8 +143,8 @@ void GameScreen::inputHandler(SDL_Event e) {
 
     if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE ) {
     
-        player -> attack();
-        SoundManager::playEffect(SoundManager::ATTACK);
+      //  player -> attack();
+        //SoundManager::playEffect(SoundManager::ATTACK);
     }	
 }
 
@@ -200,8 +197,14 @@ void GameScreen::placeObstacles()
 		destructibles.push_back(des);
 	
 	}
+
 	
 	
+		GameState *s = s->getInstance();
+s -> backgroundIndex++;
+
+	Image *image = new Image(NULL, s -> backgrounds[s -> backgroundIndex % 4]);
+	background -> changeImage(image);
 	
 	
 }

@@ -8,6 +8,7 @@ Draw::Draw(SDL_Renderer *renderer, Image *image,  SDL_Rect *location){
     this -> image = image;
     this -> location = location;
     image -> loadTexture(renderer);
+    renderer = renderer;
 }    
 
 
@@ -19,9 +20,9 @@ void Draw::drawObject(){
 
 bool Draw::didCollide(Draw *obj){
   
-    //cout << "LOCATIONS:" << endl;
-    //printLocation();
-    //obj -> printLocation();
+    // cout << "LOCATIONS:" << endl;
+    // printLocation();
+    // obj -> printLocation();
     
     SDL_Rect *rect1 = obj -> location;
     SDL_Rect *rect2 =  location;
@@ -42,11 +43,11 @@ bool Draw::didCollide(Draw *obj){
     //if (top1 >= top2 && top1 <= bottom2){return true;}
    // if (top2 >= top1 && top2 <= bottom1){return true;}
 
-   if (right1 >= left2 && right1 <= right2){return true;}
-    if (right2 >= left1 && right2 <= right1){return true;}
+   if (abs(right1 - left2) <= 5 ){return true;}
+    if (abs(right2 - left1) <= 5 ){return true;}
 
-    if (left1  <= right2 && left1 >= left2){return true;}
-    if (left2 - 25 <= right1 && left2 >= left1){return true;}
+    // if (left1  == right2 ){return true;}
+    // if (left2 - 25 == right1 ){return true;}
 
 
 //    // if (top1 >= bottom2){return false;}
@@ -65,7 +66,7 @@ Draw::Draw(){}
 
 Draw::~Draw(){
     delete image;
-   // delete location;
+    delete location;
   //  std::cout << "BYEEEE" << std::endl;
 }
 
@@ -73,3 +74,10 @@ void Draw::printLocation(){
        std::cout << "xPos: " << location -> x << " yPos: " << location-> y  << " Width: " << location->w << " Height: " << location->h << endl; 
  
 }
+
+void Draw::changeImage(Image *img){
+    delete image;
+    image = img;
+    img -> loadTexture(renderer);
+
+    }

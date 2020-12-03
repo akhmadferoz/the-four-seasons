@@ -38,6 +38,7 @@ public:
 
     Draw(SDL_Renderer *, Image *, SDL_Rect *);     
 
+    void changeImage(Image *img);
    
     bool didCollide(Draw *obj);
 

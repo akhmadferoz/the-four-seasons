@@ -12,4 +12,5 @@ public:
     void drawObject();
     Destructible(Type, SDL_Renderer *);
     bool isInValid();
+    void onHit();
 };
