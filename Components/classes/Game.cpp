@@ -231,7 +231,7 @@ void Game::renderObjects()
 		object->drawObject();
 		if(object  -> didCollide(player -> character)){
 			if(healths.size() > 0){
-				healths.erase(healths.end() - 1);
+				healths.erase(healths.end() - 2);
 			}
 			std::cout <<"THE ENDDDD"<< endl;
 		}
