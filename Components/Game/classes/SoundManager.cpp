@@ -22,8 +22,9 @@ class SoundManager{
                 break;
             }
            
-            auto sound = Mix_LoadMUS(name);
-            Mix_PlayMusic(sound, 1);
+            auto sound = Mix_LoadWAV(name);
+            Mix_PlayChannel( -1, sound, 0 );
+            //Mix_PlayChannel
             
         }
 

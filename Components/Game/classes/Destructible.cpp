@@ -20,7 +20,10 @@ Destructible::Destructible(Type type, SDL_Renderer *renderer){
 
 void Destructible::drawObject(){
     Draw::drawObject();
-    location -> x -= speed;
+    
+    GameState *s = s->getInstance();
+
+    location -> x -= s -> gameSpeed();
 }
 
 bool Destructible::isInValid(){

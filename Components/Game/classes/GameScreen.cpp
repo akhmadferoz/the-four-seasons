@@ -34,6 +34,8 @@ void GameScreen::createObstacles()
 void GameScreen::renderObjects()
 {
 	
+	GameState *s = s->getInstance();
+	s ->gameTime++;
 
 	createObstacles();
 

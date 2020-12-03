@@ -10,10 +10,19 @@ using namespace std;
 
 #ifndef DEFAULTS
 #define DEFAULTS
+
 #include "../../structures/Constants.cpp"
 #include "../classes/SoundManager.cpp"
 
 #endif
+#include "../classes/GameState.cpp"
+
+// #ifndef GameState
+// #define GameState
+// #include "../classes/GameState.cpp"
+// #endif
+
+
 
 class Draw
 {

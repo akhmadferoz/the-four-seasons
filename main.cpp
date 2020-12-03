@@ -14,3 +14,4 @@ int main(int argc, char *argv[]){
 
     return 0;
 }
+GameState *GameState::instance = 0;

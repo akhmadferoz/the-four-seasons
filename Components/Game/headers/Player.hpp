@@ -12,7 +12,7 @@ public:
     int airTime = 3;
     int jumpingSeconds = -1;
 
-  int speed = 20;
+ // int speed = 20;
 
     Character *character;
     MOVE move = NONE;

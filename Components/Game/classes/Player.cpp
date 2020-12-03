@@ -5,6 +5,8 @@ Player::Player(Character *chr){
 }
 
 void Player::render(){
+ GameState *s = s->getInstance();
+
     if (jumpingSeconds == airTime){
         character -> location -> y += 90;
         jumpingSeconds = -1;
@@ -17,7 +19,7 @@ void Player::render(){
 
     if (move == RIGHT){
       
-        character -> location -> x += speed;
+        character -> location -> x += s -> gameSpeed();
     } 
 
      if (move == LEFT){
@@ -25,7 +27,7 @@ void Player::render(){
            
             return;}
        
-        character -> location -> x -= speed;
+        character -> location -> x -= s -> gameSpeed();
     }   
     this -> character -> drawObject();
     

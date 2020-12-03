@@ -5,10 +5,10 @@
 #endif
 
 
-#include "../classes/GameState.cpp"
 #include "../headers/Player.hpp"
 #include "./HealthBar.hpp"
 
+#include "../headers/Destructible.hpp"
 
 
 class GameScreen{

@@ -1,25 +1,28 @@
 
 
 
-#include "../headers/Destructible.hpp"
 
-#ifndef CHARACTER
-#define CHARACTER
-#include "../headers/Character.hpp"
-#endif
 
 
 class GameState{
     static GameState *instance;
     GameState() {}
 public:
+
+    int gameTime = 0;
+    int maxHealth = 4;
+    int difficultyRate = 0.5;
+
+
     static GameState *getInstance() {
       if (!instance)
       instance = new GameState;
       return instance;
-   }
+    }
 
-    int maxHealth = 4;
-    Character::Type character = Character::MainCharacter;
+    int gameSpeed(){
+        return 20 +(difficultyRate * gameTime);
+    }
+
     
 };
