@@ -12,6 +12,7 @@
 #include "../classes/GameState.cpp"
 #include "../headers/Player.hpp"
 #include "../classes/SoundManager.cpp"
+#include "../headers/HealthBar.hpp"
 
 class Game
 {
@@ -39,6 +40,7 @@ class Game
     Player *player;
     std::vector<Draw*> background_objects;
     std::vector<Destructible*> destructibles;
+    std::vector<HealthBar*> healths;
     SoundManager soundManager;
 
 public:

@@ -178,6 +178,11 @@ void Game::addObjects()
 	Draw *bg = new Draw(gRenderer, image, NULL);
 
 	background_objects.push_back(bg);
+
+	for (int i=0; i < 5; i++){
+		HealthBar *heart = new HealthBar(HealthBar::FILLED, gRenderer, 20);
+		healths.push_back(heart);
+	}
 }
 
 void Game::createObstacles()
@@ -189,6 +194,7 @@ void Game::createObstacles()
 		Destructible *des = new Destructible(Destructible::Zombie, gRenderer);
 		destructibles.push_back(des);
 	}
+	
 	count += 1;
 }
 
@@ -202,13 +208,13 @@ void Game::renderObjects()
 
 	
 
-	for (Draw *object : Game::background_objects)
-	{
-
+	for (Draw *object : Game::background_objects){
 		object->drawObject();
-		
+	}
 
-
+	for (int x=0; x< 5; x++){
+		HealthBar *health_object = healths[x];
+		health_object -> drawObject();
 	}
 
 	vector<int> invalidObjects;
@@ -224,6 +230,9 @@ void Game::renderObjects()
 
 		object->drawObject();
 		if(object  -> didCollide(player -> character)){
+			if(healths.size() > 0){
+				healths.erase(healths.end() - 1);
+			}
 			std::cout <<"THE ENDDDD"<< endl;
 		}
 		
@@ -248,6 +257,11 @@ void Game::close()
 	}
 
 	for (Destructible *obj : destructibles)
+	{
+		delete obj;
+	}
+
+	for (HealthBar *obj : healths)
 	{
 		delete obj;
 	}

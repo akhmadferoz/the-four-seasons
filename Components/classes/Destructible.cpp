@@ -7,7 +7,7 @@ Destructible::Destructible(Type type, SDL_Renderer *renderer){
 
     SDL_Rect *objectLocation = new SDL_Rect({1024, 700, 60, 60});
     
-    Image *image = new Image(NULL, "d.jpg");
+    Image *image = new Image(NULL, "o_lighthouse.png");
 
     this -> location = objectLocation;
     Draw::location = objectLocation;
@@ -15,7 +15,7 @@ Destructible::Destructible(Type type, SDL_Renderer *renderer){
     Draw::image = image;
     Draw::renderer = renderer;
 
-     Draw::image ->loadTexture(renderer);
+    Draw::image ->loadTexture(renderer);
 }
 
 void Destructible::drawObject(){
