@@ -4,10 +4,10 @@
 Character::Character(Type type, SDL_Rect *location, SDL_Renderer *renderer)
 {
 
-    SDL_Rect rects[] = {{34, 5, 15, 19},
-{50, 5, 15, 19},
-{66, 5, 15, 19},
-{82, 5, 15, 19}
+    SDL_Rect rects[] = {{9, 42, 15, 22},
+{41, 41,15,22},
+{72, 42, 16, 22}
+
 
 };
 
@@ -21,7 +21,7 @@ Character::Character(Type type, SDL_Rect *location, SDL_Renderer *renderer)
         assetLocations.push_back(imageLocation);
     }
 
-    Image *image = new Image(assetLocations, "c_knight.png");
+    Image *image = new Image(assetLocations, "characters.png");
     Draw::location = location;
     Draw::image = image;
     Draw::renderer = renderer;

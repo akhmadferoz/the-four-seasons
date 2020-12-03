@@ -27,7 +27,7 @@ class Image
 public:
    // SDL_Rect currentRect = {0,0,0,0};
 
-
+    bool isAnimationInjected();
 
     void loadTexture(SDL_Renderer *gRenderer );
     Image(SDL_Rect *coordinates);

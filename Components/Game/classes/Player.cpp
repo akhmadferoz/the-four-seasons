@@ -64,11 +64,13 @@ void Player::attack(){
 }
 
 void Player::runningAnimation(){
+    if(character -> image -> isAnimationInjected()){return;}
 
-
-    SDL_Rect rects[] = {{87, 76, 16, 16},
-{106, 75, 16, 16},
-{126, 75, 15, 14}
+    SDL_Rect rects[] = {{425, 42, 15, 22},
+{457, 41, 15, 22},
+{489, 42, 15, 22},
+{520, 41, 17, 22},
+{522, 42, 16, 22}
 };
 
     std::vector<SDL_Rect *> assetLocations;
@@ -77,6 +79,6 @@ void Player::runningAnimation(){
         SDL_Rect *imageLocation = new SDL_Rect(rect);
         assetLocations.push_back(imageLocation);
     }
-
+    
     character -> image -> animateImage(assetLocations);
 }

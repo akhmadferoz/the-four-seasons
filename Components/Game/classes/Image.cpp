@@ -56,6 +56,11 @@ Image::~Image(){
 
 
 //---------------Functions
+
+    bool Image::isAnimationInjected(){
+        return secondCoordinates.size() > 0;
+    }
+
     void Image::animateImage(std::vector<SDL_Rect *> vec){
         secondCoordinates = vec;
     }
