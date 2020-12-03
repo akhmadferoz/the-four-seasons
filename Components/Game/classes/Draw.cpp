@@ -43,8 +43,8 @@ bool Draw::didCollide(Draw *obj){
     //if (top1 >= top2 && top1 <= bottom2){return true;}
    // if (top2 >= top1 && top2 <= bottom1){return true;}
 
-   if (abs(right1 - left2) <= 5 ){return true;}
-    if (abs(right2 - left1) <= 5 ){return true;}
+//    if (abs(right1 - left2) <= 5 ){return true;}
+//     if (abs(right2 - left1) <= 5 ){return true;}
 
     // if (left1  == right2 ){return true;}
     // if (left2 - 25 == right1 ){return true;}
@@ -55,6 +55,13 @@ bool Draw::didCollide(Draw *obj){
 //     if (left1 >= right2){return false;}
 
 //     if(right1 > right2){return false;}
+
+
+   if (right1 >= left2 && right1 <= right2){return true;}
+    if (right2 >= left1 && right2 <= right1){return true;}
+
+    if (left1  <= right2 && left1 >= left2){return true;}
+    if (left2 - 25 <= right1 && left2 >= left1){return true;}
 
     return false;
 

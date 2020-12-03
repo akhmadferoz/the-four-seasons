@@ -7,8 +7,8 @@
 
 HealthBar::HealthBar( SDL_Renderer *renderer, int max){
 
-    int interimSpace = 30;
-    
+   currentHealth = max;
+    this -> renderer = renderer;
     for (int x =0; x< max; x++){
         
 
@@ -24,6 +24,15 @@ void HealthBar::lostLife(){
     if (lives.size() == 0){return;}
     delete lives[lives.size() -1];
     lives.erase(lives.end() - 1);
+    currentHealth--;
+}
+
+void HealthBar::gainedLife(){
+    
+        SDL_Rect *objectLocation = new SDL_Rect({50+ (currentHealth*(interimSpace)) , 50, 25, 25});
+        Life *life = new Life(renderer,objectLocation);
+        lives.push_back(life);
+        currentHealth++;
 }
 
 void HealthBar::draw(){

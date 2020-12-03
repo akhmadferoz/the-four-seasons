@@ -11,7 +11,7 @@ public:
 
     int gameTime = 0;
     int maxHealth = 4;
-    int difficultyRate = 0.9;
+    int difficultyRate = 0.98;
 
     int backgroundIndex = 0;
 

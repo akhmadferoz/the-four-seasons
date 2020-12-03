@@ -2,7 +2,7 @@
 
 void GameScreen::addObjects()
 {
-	SDL_Rect *location = new SDL_Rect({100, Constants::SCREEN_HEIGHT - 84, 48, 84});
+	SDL_Rect *location = new SDL_Rect({100, Constants::SCREEN_HEIGHT - 100, 48, 84});
 	Character *character = new Character(Character::MainCharacter, location, gRenderer);
 	player = new Player(character);
 
@@ -25,8 +25,16 @@ void GameScreen::createObstacles()
 	int freq = rand() % 100;
 	if (count % 10 == 0 && freq < 75)
 	{
-		Destructible *des = new Destructible(Destructible::Zombie, gRenderer);
-		destructibles.push_back(des);
+
+		Destructible *des;
+		if (freq < 65){
+		des = new Destructible(Destructible::Obstacle, gRenderer);
+		}else {
+			des = new Destructible(Destructible::Health, gRenderer);
+		}
+					destructibles.push_back(des);
+
+		
 	}
 	
 	count += 1;
@@ -68,10 +76,19 @@ void GameScreen::renderObjects()
 
 		object->drawObject();
 
-		if(player -> character  -> didCollide(object)){
+		if(!(object -> collided) && player -> character  -> didCollide(object)){
 			
+			if(object -> type == Destructible::Obstacle){
+
 			healthBar -> lostLife();
+			}else{
+			healthBar -> gainedLife();
+
+			}			
+			
 			object -> onHit();
+
+			
 			
       		//invalidObjects.push_back(x);
 
@@ -143,7 +160,7 @@ void GameScreen::inputHandler(SDL_Event e) {
 
     if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE ) {
     
-      //  player -> attack();
+      player -> danceAnimation();
         //SoundManager::playEffect(SoundManager::ATTACK);
     }	
 }
@@ -192,7 +209,7 @@ void GameScreen::placeObstacles()
 
 	for(int x = 0; x < freq; x++){
 
-		Destructible *des = new Destructible(Destructible::Zombie, gRenderer);
+		Destructible *des = new Destructible(Destructible::Obstacle, gRenderer);
 		des -> location -> x = (space * x); 
 		destructibles.push_back(des);
 	

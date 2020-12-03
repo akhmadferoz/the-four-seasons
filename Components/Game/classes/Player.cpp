@@ -82,3 +82,42 @@ void Player::runningAnimation(){
     
     character -> image -> animateImage(assetLocations);
 }
+
+
+void Player::danceAnimation(){
+        if(character -> image -> isAnimationInjected()){return;}
+
+    SDL_Rect rects[] = {
+ {9, 12, 15, 20},
+{41, 11, 15, 20},
+{72, 12, 16, 20},
+{104, 11, 17, 20},
+{135, 13, 17, 19},
+{168, 11, 16, 20},
+{201, 11, 15, 20},
+{233, 13, 16, 19},
+{294, 12, 17, 20},
+{329, 12, 15, 20},
+{361, 12, 15, 20},
+{393, 12, 15, 20},
+{426, 12, 13, 20},
+{457, 11, 15, 20},
+{489, 12, 15, 20},
+{520, 11, 17, 20},
+{552, 12, 16, 20},
+{584, 12, 15, 20},
+{616, 12, 15, 20},
+{648, 12, 15, 20},
+{680, 12, 15, 20},
+{711, 12, 17, 20}
+};
+
+    std::vector<SDL_Rect *> assetLocations;
+    for (SDL_Rect rect : rects)
+    {
+        SDL_Rect *imageLocation = new SDL_Rect(rect);
+        assetLocations.push_back(imageLocation);
+    }
+    
+    character -> image -> animateImage(assetLocations);
+}
