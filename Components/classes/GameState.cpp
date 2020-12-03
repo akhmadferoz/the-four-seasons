@@ -19,7 +19,7 @@ public:
       return instance;
    }
 
-   
+    int maxHealth = 4;
     Character::Type character = Character::MainCharacter;
     
 };

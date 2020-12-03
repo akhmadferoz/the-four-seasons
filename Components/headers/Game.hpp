@@ -11,12 +11,11 @@
 
 #include "../classes/GameState.cpp"
 #include "../headers/Player.hpp"
+#include "./HealthBar.hpp"
 
 #ifndef DEFAULTS
 #define DEFAULTS
 #include "../structures/Constants.cpp"
-#include "../classes/SoundManager.cpp"
-#include "../headers/HealthBar.hpp"
 
 #endif
 
@@ -42,7 +41,7 @@ class Game
     std::vector<Draw*> background_objects;
     std::vector<Destructible*> destructibles;
 
-    std::vector<HealthBar*> healths;
+    HealthBar *healthBar;
 
 
 

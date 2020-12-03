@@ -179,10 +179,10 @@ void Game::addObjects()
 
 	background_objects.push_back(bg);
 
-	for (int i=0; i < 5; i++){
-		HealthBar *heart = new HealthBar(HealthBar::FILLED, gRenderer, 20);
-		healths.push_back(heart);
-	}
+	
+	healthBar = new HealthBar(Life::FILLED, gRenderer, 6);
+		
+	
 }
 
 void Game::createObstacles()
@@ -201,9 +201,7 @@ void Game::createObstacles()
 void Game::renderObjects()
 {
 
-	//for (int x =0; x< 4;x++){
 
-	//}
 	createObstacles();
 
 	
@@ -212,10 +210,9 @@ void Game::renderObjects()
 		object->drawObject();
 	}
 
-	for (int x=0; x< 5; x++){
-		HealthBar *health_object = healths[x];
-		health_object -> drawObject();
-	}
+
+	healthBar -> draw();
+	
 
 	vector<int> invalidObjects;
 	for (int x=0; x<destructibles.size();x++)
@@ -230,11 +227,15 @@ void Game::renderObjects()
 
 		object->drawObject();
 
-		if(object  -> didCollide(player -> character)){
-			if(healths.size() > 0){
-				healths.erase(healths.end() - 2);
-			}
-      invalidObjects.push_back(x);
+		if(player -> character  -> didCollide(object)){
+			
+			healthBar -> lostLife();
+			// if(healths.size() > 0){
+			// 	healths.erase(healths.end());
+			// 	std::cout << healths.size() << endl;
+			// }
+
+      		invalidObjects.push_back(x);
 
 			std::cout <<"THE ENDDDD"<< endl;
 			SoundManager::playEffect(SoundManager::COLLIDE);
@@ -265,10 +266,9 @@ void Game::close()
 		delete obj;
 	}
 
-	for (HealthBar *obj : healths)
-	{
-		delete obj;
-	}
+	
+	delete healthBar;
+	
 
 	//Destroy window
 	SDL_DestroyRenderer(gRenderer);
