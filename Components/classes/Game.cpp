@@ -142,13 +142,13 @@ void Game::run()
 			if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_UP ) {
 			
 				player -> jump();
-				soundManager.playEffect(SoundManager::JUMP);
+				
 			}
 
 			if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE ) {
 			
 				player -> attack();
-				soundManager.playEffect(SoundManager::ATTACK);
+				SoundManager::playEffect(SoundManager::ATTACK);
 			}		
 
 		}
@@ -157,7 +157,7 @@ void Game::run()
 		{
 			//Play the music
 			//Mix_PlayMusic(bgMusic, 2);
-			soundManager.playMusic();
+			SoundManager::playMusic();
 		}
 
 		SDL_RenderClear(gRenderer); 
@@ -170,7 +170,7 @@ void Game::run()
 
 void Game::addObjects()
 {
-	SDL_Rect *location = new SDL_Rect({100, 700, 48, 84});
+	SDL_Rect *location = new SDL_Rect({100, Constants::SCREEN_HEIGHT - 84, 48, 84});
 	Character *character = new Character(Character::MainCharacter, location, gRenderer);
 	player = new Player(character);
 
@@ -223,8 +223,10 @@ void Game::renderObjects()
 		}
 
 		object->drawObject();
-		if(object  -> didCollide(player -> character)){
+		if(player -> character  -> didCollide(object)){
+			invalidObjects.push_back(x);
 			std::cout <<"THE ENDDDD"<< endl;
+			SoundManager::playEffect(SoundManager::COLLIDE);
 		}
 		
 	}

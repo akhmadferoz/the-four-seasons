@@ -2,12 +2,12 @@
 #include <string>
 
 class SoundManager{
-
+    SoundManager(){}
     
     public:
-    enum Effect {ATTACK, JUMP};
+    enum Effect {ATTACK, JUMP, COLLIDE};
 
-        void playEffect(Effect effect){
+       static void playEffect(Effect effect){
             
             char *name;
             switch (effect){
@@ -16,6 +16,8 @@ class SoundManager{
                 break;
                 case JUMP:
                 name = "./Assets/audio/SFX_Jump_12.wav";
+                case COLLIDE:
+                name = "./Assets/audio/cartoon-throw.wav";
                 break;
             }
            
@@ -23,7 +25,7 @@ class SoundManager{
             Mix_PlayMusic(sound, 1);
             
         }
-           void playMusic(){
+           static void playMusic(){
             auto sound = Mix_LoadMUS("./Assets/audio/snowflake-waltz.mp3");
            // Mix_PlayMusic(sound, 1);
             
