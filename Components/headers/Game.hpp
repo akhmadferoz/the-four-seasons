@@ -11,13 +11,22 @@
 
 #include "../classes/GameState.cpp"
 #include "../headers/Player.hpp"
+
+#ifndef DEFAULTS
+#define DEFAULTS
+#include "../structures/Constants.cpp"
 #include "../classes/SoundManager.cpp"
+#include "../headers/HealthBar.hpp"
+
+#endif
+
+
 
 class Game
 {
     //Screen dimension constants
-    const int SCREEN_WIDTH = 1024;
-    const int SCREEN_HEIGHT = 800;
+    const int SCREEN_WIDTH = Constants::SCREEN_WIDTH;
+    const int SCREEN_HEIGHT = Constants::SCREEN_HEIGHT;
 
     //The window we'll be rendering to
     SDL_Window *gWindow = NULL;
@@ -26,12 +35,16 @@ class Game
     SDL_Renderer *gRenderer = NULL;
 
 
+
     Mix_Music *bgMusic = NULL;
     
     Player *player;
     std::vector<Draw*> background_objects;
     std::vector<Destructible*> destructibles;
-    SoundManager soundManager;
+
+    std::vector<HealthBar*> healths;
+
+
 
 public:
 	//GameState *gameState = gameState->getInstance();
