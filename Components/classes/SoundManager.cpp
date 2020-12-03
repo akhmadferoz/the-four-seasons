@@ -25,9 +25,11 @@ class SoundManager{
             Mix_PlayMusic(sound, 1);
             
         }
-           static void playMusic(){
-            auto sound = Mix_LoadMUS("./Assets/audio/snowflake-waltz.mp3");
-           // Mix_PlayMusic(sound, 1);
+
+          static void playMusic(){
+               auto sound = Mix_LoadMUS("./Assets/audio/champion.mp3");
+                Mix_PlayMusic(sound, 1);
+
             
         }
         

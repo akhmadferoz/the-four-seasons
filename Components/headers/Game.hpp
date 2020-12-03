@@ -16,6 +16,7 @@
 #define DEFAULTS
 #include "../structures/Constants.cpp"
 #include "../classes/SoundManager.cpp"
+#include "../headers/HealthBar.hpp"
 
 #endif
 
@@ -40,6 +41,10 @@ class Game
     Player *player;
     std::vector<Draw*> background_objects;
     std::vector<Destructible*> destructibles;
+
+    std::vector<HealthBar*> healths;
+
+
 
 public:
 	//GameState *gameState = gameState->getInstance();
