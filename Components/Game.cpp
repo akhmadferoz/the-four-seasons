@@ -1,5 +1,5 @@
 // Includes
-#include "../headers/Game.hpp"
+#include "./Game.hpp"
 #include <string>
 
 bool Game::init()
@@ -88,7 +88,7 @@ void Game::run()
 {
 
 	gamescreen = new GameScreen(gRenderer);
-	
+	GameState *state = state -> getInstance(); 
 	//bool quit;
 	SDL_Event e;
 

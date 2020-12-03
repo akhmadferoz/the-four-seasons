@@ -11,7 +11,7 @@ using namespace std;
 #ifndef DEFAULTS
 #define DEFAULTS
 
-#include "../../structures/Constants.cpp"
+#include "../../Constants.cpp"
 #include "../classes/SoundManager.cpp"
 
 #endif

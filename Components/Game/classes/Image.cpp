@@ -49,7 +49,7 @@ Image::~Image(){
 
         }
 
-        auto coordinates = Image::coordinates[0];
+        auto coordinates = Image::coordinates[animationIndex];
         return coordinates;
     }
 

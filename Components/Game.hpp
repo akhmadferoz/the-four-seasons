@@ -9,7 +9,7 @@
 #include <thread>
 #include <SDL_thread.h>
 
-#include "../Game/headers/GameScreen.hpp"
+#include "./Game/headers/GameScreen.hpp"
 
 
 
