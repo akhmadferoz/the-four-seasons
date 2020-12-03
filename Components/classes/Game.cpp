@@ -174,7 +174,7 @@ void Game::addObjects()
 	Character *character = new Character(Character::MainCharacter, location, gRenderer);
 	player = new Player(character);
 
-	Image *image = new Image(NULL, "game_background_2.png");
+	Image *image = new Image(NULL, "city.png");
 	Draw *bg = new Draw(gRenderer, image, NULL);
 
 	background_objects.push_back(bg);
@@ -184,7 +184,7 @@ void Game::createObstacles()
 {
 	static int count = 0;
 	int freq = rand() % 100;
-	if (count % 10 == 0 && freq < 60)
+	if (count % 10 == 0 && freq < 70)
 	{
 		Destructible *des = new Destructible(Destructible::Zombie, gRenderer);
 		destructibles.push_back(des);
