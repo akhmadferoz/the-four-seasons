@@ -6,7 +6,7 @@ void Life::drawObject(){
 
 }
 
-Life::Life(Life::Type type, SDL_Renderer *renderer, SDL_Rect *location){
+Life::Life(SDL_Renderer *renderer, SDL_Rect *location){
 
    
     

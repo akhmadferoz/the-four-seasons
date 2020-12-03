@@ -14,6 +14,6 @@ class HealthBar{
         void gainedLife();
 
         void draw();
-        HealthBar(Life::Type, SDL_Renderer *, int);
+        HealthBar( SDL_Renderer *, int);
         ~HealthBar();
 };

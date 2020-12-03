@@ -9,9 +9,8 @@
 #include <thread>
 #include <SDL_thread.h>
 
-#include "../classes/GameState.cpp"
-#include "../headers/Player.hpp"
-#include "./HealthBar.hpp"
+#include "../headers/GameScreen.hpp"
+
 
 #ifndef DEFAULTS
 #define DEFAULTS
@@ -33,16 +32,10 @@ class Game
     //The window renderer
     SDL_Renderer *gRenderer = NULL;
 
-
+    GameScreen *gamescreen;
 
     Mix_Music *bgMusic = NULL;
-    
-    Player *player;
-    std::vector<Draw*> background_objects;
-    std::vector<Destructible*> destructibles;
-
-    HealthBar *healthBar;
-
+   
 
 
 public:
@@ -50,13 +43,10 @@ public:
 
 
     bool init();
-    bool loadMedia();
     void close();
     SDL_Texture *loadTexture(std::string path);
     void run();
-    void renderObjects();
-    void addObjects();
-    void createObstacles();
+
     
 
 };

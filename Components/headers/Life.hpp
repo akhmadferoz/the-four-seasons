@@ -8,8 +8,8 @@ class Life: public Draw{
 
     public:
         void drawObject();
-        enum Type {FILLED, EMPTY};
-        Life(Type, SDL_Renderer *, SDL_Rect *loc);
+        
+        Life(SDL_Renderer *, SDL_Rect *loc);
 
 
 };

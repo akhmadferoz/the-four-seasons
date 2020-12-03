@@ -5,7 +5,7 @@
 
 
 
-HealthBar::HealthBar(Life::Type type, SDL_Renderer *renderer, int max){
+HealthBar::HealthBar( SDL_Renderer *renderer, int max){
 
     int interimSpace = 20;
     
@@ -13,7 +13,7 @@ HealthBar::HealthBar(Life::Type type, SDL_Renderer *renderer, int max){
         
 
         SDL_Rect *objectLocation = new SDL_Rect({50+ (x*(interimSpace)) , 50, 16, 16});
-        Life *life = new Life(Life::FILLED,renderer,objectLocation);
+        Life *life = new Life(renderer,objectLocation);
         lives.push_back(life);
        
     }
@@ -21,6 +21,7 @@ HealthBar::HealthBar(Life::Type type, SDL_Renderer *renderer, int max){
 }
 
 void HealthBar::lostLife(){
+    if (lives.size() == 0){return;}
     delete lives[lives.size() -1];
     lives.erase(lives.end() - 1);
 }

@@ -83,32 +83,12 @@ SDL_Texture *Game::loadTexture(std::string path)
 	return newTexture;
 }
 
-bool Game::loadMedia()
-{
-
-	// assets = loadTexture("./Assets/images/mon2_sprite_base.png");
-	// ground = loadTexture("./Assets/images/ground.png");
-	// gTexture = loadTexture("./Assets/images/bgSow.png");
-	//bgMusic = Mix_LoadMUS("./Assets/audio/snowflake-waltz.mp3");
-
-	// if (assets == NULL || gTexture == NULL || ground == NULL ){
-	// 	printf("Unable to run due to error: %s\n", SDL_GetError());
-	// 	return false;
-	// }
-
-	// if (bgMusic == NULL)
-	// {
-	// 	printf("Unable to load music: %s \n", Mix_GetError());
-	// 	return false;
-	// }
-
-	return true;
-}
 
 void Game::run()
 {
 
-	Game::addObjects();
+	gamescreen = new GameScreen(gRenderer);
+	
 	//bool quit;
 	SDL_Event e;
 
@@ -119,156 +99,35 @@ void Game::run()
 		while (SDL_PollEvent(&e) != 0)
 		{
 
-			//Check if user requests quit
 			if (e.type == SDL_QUIT)
 			{
 				return;
 			}
-
-			if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RIGHT ) {
-				player -> move = Player::RIGHT;
-			}
-			if (e.type == SDL_KEYUP && e.key.keysym.sym == SDLK_RIGHT ) {
-				player -> move = Player::NONE;
-			}
-
-			if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_LEFT ) {
-				player -> move = Player::LEFT;
-			}
-			if (e.type == SDL_KEYUP && e.key.keysym.sym == SDLK_LEFT ) {
-				player -> move = Player::NONE;
-			}
-
-			if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_UP ) {
 			
-				player -> jump();
-				
-			}
-
-			if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE ) {
-			
-				player -> attack();
-				SoundManager::playEffect(SoundManager::ATTACK);
-			}		
+			gamescreen -> inputHandler(e);
 
 		}
 
 		if (Mix_PlayingMusic() == 0)
 		{
-			//Play the music
-			//Mix_PlayMusic(bgMusic, 2);
 			SoundManager::playMusic();
 		}
 
 		SDL_RenderClear(gRenderer); 
-		Game::renderObjects();
+		
+		gamescreen -> renderObjects();
 
 		SDL_RenderPresent(gRenderer); 
 		SDL_Delay(200);
 	}
 }
 
-void Game::addObjects()
-{
-	SDL_Rect *location = new SDL_Rect({100, Constants::SCREEN_HEIGHT - 84, 48, 84});
-	Character *character = new Character(Character::MainCharacter, location, gRenderer);
-	player = new Player(character);
 
-	Image *image = new Image(NULL, "city.png");
-	Draw *bg = new Draw(gRenderer, image, NULL);
-
-	background_objects.push_back(bg);
-
-	
-	healthBar = new HealthBar(Life::FILLED, gRenderer, 6);
-		
-	
-}
-
-void Game::createObstacles()
-{
-	static int count = 0;
-	int freq = rand() % 100;
-	if (count % 10 == 0 && freq < 70)
-	{
-		Destructible *des = new Destructible(Destructible::Zombie, gRenderer);
-		destructibles.push_back(des);
-	}
-	
-	count += 1;
-}
-
-void Game::renderObjects()
-{
-
-
-	createObstacles();
-
-	
-
-	for (Draw *object : Game::background_objects){
-		object->drawObject();
-	}
-
-
-	healthBar -> draw();
-	
-
-	vector<int> invalidObjects;
-	for (int x=0; x<destructibles.size();x++)
-	{
-		Destructible *object = destructibles[x];
-		if (object -> isInValid()){
-			invalidObjects.push_back(x);
-			// destructibles.
-			// delete object;
-			continue;
-		}
-
-		object->drawObject();
-
-		if(player -> character  -> didCollide(object)){
-			
-			healthBar -> lostLife();
-			// if(healths.size() > 0){
-			// 	healths.erase(healths.end());
-			// 	std::cout << healths.size() << endl;
-			// }
-
-      		invalidObjects.push_back(x);
-
-			std::cout <<"THE ENDDDD"<< endl;
-			SoundManager::playEffect(SoundManager::COLLIDE);
-		}
-		
-	}
-
-	for(int index: invalidObjects){
-		Destructible *object = destructibles[index];
-		delete object;
-		destructibles.erase(destructibles.begin()+ index);
-	}
-
-	player->render();
-}
 
 void Game::close()
 {
-	delete player;
-	//Delete all renderable objects
-	for (Draw *obj : background_objects)
-	{
-		delete obj;
-	}
-
-	for (Destructible *obj : destructibles)
-	{
-		delete obj;
-	}
-
 	
-	delete healthBar;
-	
+	delete gamescreen;
 
 	//Destroy window
 	SDL_DestroyRenderer(gRenderer);
