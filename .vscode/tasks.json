@@ -1,0 +1,44 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build hello world",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-g",
+                //    "-o",
+                "*.cpp",
+                //"helloworld",
+                //"helloworld.cpp"
+                "-I",
+                "C://SDL2-2.0.10//x86_64-w64-mingw32//include//SDL2",
+                "-I",
+                "C://SDL2_image-2.0.5//x86_64-w64-mingw32//include//SDL2",
+                "-I",
+                "C://SDL2_ttf-2.0.15//x86_64-w64-mingw32//include//SDL2",
+                "-I",
+                "C://SDL2_mixer-2.0.4//x86_64-w64-mingw32//include//SDL2",
+                "-L",
+                "C://SDL2-2.0.10//x86_64-w64-mingw32//lib",
+                "-L",
+                "C://SDL2_image-2.0.5//x86_64-w64-mingw32//lib",
+                "-L",
+                "C://SDL2_ttf-2.0.15//x86_64-w64-mingw32//lib",
+                "-L",
+                "C://SDL2_mixer-2.0.4//x86_64-w64-mingw32//lib",
+                "-lmingw32",
+                "-lSDL2main",
+                "-lSDL2",
+                "-lopengl32",
+                "-lSDL2_image",
+                "-lSDL2_ttf",
+                "-lSDL2_mixer"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
