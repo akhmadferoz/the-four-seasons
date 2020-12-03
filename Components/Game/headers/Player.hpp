@@ -23,5 +23,6 @@ public:
     
     void jump();
     void attack();
+    void runningAnimation();
 
 };

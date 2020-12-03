@@ -105,6 +105,14 @@ void GameScreen::renderObjects()
            character -> printLocation();
 		  adjustObjects();
             }
+
+	// if(player -> move != Player::NONE){
+	// 	player -> character -> image -> animating = true;
+	// }else {
+	// 			// player -> character -> image -> animating = false;
+	// 			// player -> character -> image -> animationIndex = 0;
+
+	// }
 }
 
 void GameScreen::inputHandler(SDL_Event e) {

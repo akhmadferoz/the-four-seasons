@@ -30,7 +30,11 @@ void Player::render(){
         character -> location -> x -= s -> gameSpeed();
     }   
     this -> character -> drawObject();
-    
+   
+   if (move == RIGHT){
+           runningAnimation();
+
+   }
 }
 
 void Player::jump(){
@@ -59,3 +63,20 @@ void Player::attack(){
     character -> image -> animateImage(assetLocations);
 }
 
+void Player::runningAnimation(){
+
+
+    SDL_Rect rects[] = {{87, 76, 16, 16},
+{106, 75, 16, 16},
+{126, 75, 15, 14}
+};
+
+    std::vector<SDL_Rect *> assetLocations;
+    for (SDL_Rect rect : rects)
+    {
+        SDL_Rect *imageLocation = new SDL_Rect(rect);
+        assetLocations.push_back(imageLocation);
+    }
+
+    character -> image -> animateImage(assetLocations);
+}

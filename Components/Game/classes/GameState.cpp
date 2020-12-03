@@ -11,7 +11,7 @@ public:
 
     int gameTime = 0;
     int maxHealth = 4;
-    int difficultyRate = 0.5;
+    int difficultyRate = 0.8;
 
 
     static GameState *getInstance() {

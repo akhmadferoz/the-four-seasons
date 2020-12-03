@@ -20,7 +20,7 @@ class Image
     void endAnimation();
 
 
-    bool animating = true;
+    bool animating = false;
     int animationIndex = 0;
 
 

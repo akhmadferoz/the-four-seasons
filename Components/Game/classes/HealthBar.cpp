@@ -7,12 +7,12 @@
 
 HealthBar::HealthBar( SDL_Renderer *renderer, int max){
 
-    int interimSpace = 20;
+    int interimSpace = 30;
     
     for (int x =0; x< max; x++){
         
 
-        SDL_Rect *objectLocation = new SDL_Rect({50+ (x*(interimSpace)) , 50, 16, 16});
+        SDL_Rect *objectLocation = new SDL_Rect({50+ (x*(interimSpace)) , 50, 25, 25});
         Life *life = new Life(renderer,objectLocation);
         lives.push_back(life);
        

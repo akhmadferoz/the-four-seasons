@@ -8,7 +8,11 @@ Character::Character(Type type, SDL_Rect *location, SDL_Renderer *renderer)
 {50, 5, 15, 19},
 {66, 5, 15, 19},
 {82, 5, 15, 19}
+
 };
+
+
+
 
     std::vector<SDL_Rect *> assetLocations;
     for (SDL_Rect rect : rects)
