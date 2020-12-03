@@ -8,6 +8,13 @@ using namespace std;
 // Includes
 #include "../headers/Image.hpp"
 
+#ifndef DEFAULTS
+#define DEFAULTS
+#include "../structures/Constants.cpp"
+#include "../classes/SoundManager.cpp"
+
+#endif
+
 
 
 class Draw
@@ -29,4 +36,9 @@ public:
     void drawObject();
     ~Draw();
 
+    void printLocation();
 };
+
+
+
+  

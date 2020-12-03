@@ -11,13 +11,21 @@
 
 #include "../classes/GameState.cpp"
 #include "../headers/Player.hpp"
+
+#ifndef DEFAULTS
+#define DEFAULTS
+#include "../structures/Constants.cpp"
 #include "../classes/SoundManager.cpp"
+
+#endif
+
+
 
 class Game
 {
     //Screen dimension constants
-    const int SCREEN_WIDTH = 1024;
-    const int SCREEN_HEIGHT = 800;
+    const int SCREEN_WIDTH = Constants::SCREEN_WIDTH;
+    const int SCREEN_HEIGHT = Constants::SCREEN_HEIGHT;
 
     //The window we'll be rendering to
     SDL_Window *gWindow = NULL;
@@ -25,21 +33,13 @@ class Game
     //The window renderer
     SDL_Renderer *gRenderer = NULL;
 
-    //Current displayed texture
-    // SDL_Texture *gTexture = NULL;
-    // //global reference to png image sheets
-    // SDL_Texture *assets = NULL;
-    // SDL_Texture *ground = NULL;
-    
-  //  SDL_Rect const player_srcRect = {86, 147, 24, 42};
-   // SDL_Rect const player_moverRect = {100, 450, 48, 84};
+
 
     Mix_Music *bgMusic = NULL;
     
     Player *player;
     std::vector<Draw*> background_objects;
     std::vector<Destructible*> destructibles;
-    SoundManager soundManager;
 
 public:
 	//GameState *gameState = gameState->getInstance();
