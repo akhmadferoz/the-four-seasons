@@ -1,8 +1,7 @@
 // Includes
 #include "./Game.hpp"
 #include <string>
-bool Game::init()
-{
+bool Game::init(){
 	whichScreen=0;
 		//Initialize SDL
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -54,8 +53,7 @@ bool Game::init()
 	return true;
 }
 
-SDL_Texture *Game::loadTexture(std::string path)
-{
+SDL_Texture *Game::loadTexture(std::string path){
 	//Final Texture
 	SDL_Texture *newTexture = NULL;
 
@@ -83,8 +81,7 @@ SDL_Texture *Game::loadTexture(std::string path)
 }
 
 
-void Game::run()
-{
+void Game::run(){
 	StartingScreen = new Menu(gRenderer);
 	gamescreen = new GameScreen(gRenderer);
 	FinishingScreen = new EndingScreen(gRenderer);
@@ -116,9 +113,8 @@ void Game::run()
 			}
 		
 
-		if (Mix_PlayingMusic() == 0)
-		{
-			// bgMusic = SoundManager::playMusic();
+		if (Mix_PlayingMusic() == 0){
+			bgMusic = SoundManager::playMusic();
 		}
 
 		SDL_RenderClear(gRenderer);
@@ -141,8 +137,7 @@ void Game::run()
 }
 
 
-void Game::close()
-{
+void Game::close(){
 	delete StartingScreen;
 	delete gamescreen;
 	delete FinishingScreen;

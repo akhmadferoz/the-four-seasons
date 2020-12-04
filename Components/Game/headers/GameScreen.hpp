@@ -13,13 +13,20 @@
 
 #include "../headers/Destructible.hpp"
 
+/**
+ * \brief This class is of the main game screen while the player is playing the game. It inherits from the Screen class.
+ *
+ * The prameters used in this class are:
+ * \param player : this is the player that the game is currently being played with 
+ * \param destructibles : these are the objects in the game
+ * \param healthBar : this is the health bar of the character
+ * \param gameClock : this is the clock being used for the game
+*/
 
 class GameScreen : public Screen{
-
     Player *player;
     //std::vector<Draw*> background_objects;
     std::vector<Destructible*> destructibles;
-
     HealthBar *healthBar;
     int gameClock = 1;
 

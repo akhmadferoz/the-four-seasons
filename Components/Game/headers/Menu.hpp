@@ -13,11 +13,15 @@
 
 #include "./QuitButton.hpp"
 
-class Menu :public Screen {
+/**
+ * \brief This Menu class has the implementation of the main menu that the user sees before the game starts
+ * 
+*/
+
+class Menu :public Screen{
 
     Button* newGame;
     Button* quitGame;
-
     public:
     Menu(SDL_Renderer *);
 
@@ -26,5 +30,4 @@ class Menu :public Screen {
     void addObjects();
 
     ~Menu();
-
 };
