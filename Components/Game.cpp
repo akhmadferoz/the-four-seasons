@@ -1,11 +1,9 @@
 // Includes
 #include "./Game.hpp"
 #include <string>
-
-bool Game::init()
-{
-
-	//Initialize SDL
+bool Game::init(){
+	whichScreen=0;
+		//Initialize SDL
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		printf("SDL could not initialize! SDL Error: %s\n", SDL_GetError());
@@ -55,8 +53,7 @@ bool Game::init()
 	return true;
 }
 
-SDL_Texture *Game::loadTexture(std::string path)
-{
+SDL_Texture *Game::loadTexture(std::string path){
 	//Final Texture
 	SDL_Texture *newTexture = NULL;
 
@@ -84,38 +81,55 @@ SDL_Texture *Game::loadTexture(std::string path)
 }
 
 
-void Game::run()
-{
-
+void Game::run(){
+	StartingScreen = new Menu(gRenderer);
 	gamescreen = new GameScreen(gRenderer);
-	GameState *state = state -> getInstance(); 
+	FinishingScreen = new EndingScreen(gRenderer);
+
+	
 	//bool quit;
 	SDL_Event e;
 
 	while (true)
 	{
-
+		cout << whichScreen << endl;
 		//Handling the events
-		while (SDL_PollEvent(&e) != 0)
-		{
-
-			if (e.type == SDL_QUIT)
+		SDL_PollEvent(&e);
+		
+			if (e.type == SDL_QUIT || whichScreen==-1)
 			{
 				return;
 			}
+			if (whichScreen==0) {
+				StartingScreen -> inputHandler(e, &whichScreen);
+			}
 
-			gamescreen -> inputHandler(e);
+			if (whichScreen == 1) {
+				gamescreen -> inputHandler(e, &whichScreen);
+			}
 
-		}
+			if (whichScreen == 2) {
+				FinishingScreen -> inputHandler(e, &whichScreen);	
+			}
+		
 
-		if (Mix_PlayingMusic() == 0)
-		{
+		if (Mix_PlayingMusic() == 0){
 			bgMusic = SoundManager::playMusic();
 		}
 
-		SDL_RenderClear(gRenderer); 
-		
+		SDL_RenderClear(gRenderer);
+
+		if (whichScreen == 0) {
+		StartingScreen -> renderObjects();
+		}
+
+		else if (whichScreen == 1) {
 		gamescreen -> renderObjects();
+		}
+
+		else if (whichScreen == 2) {
+			FinishingScreen -> renderObjects();
+		}
 
 		SDL_RenderPresent(gRenderer); 
 		SDL_Delay(200);
@@ -123,12 +137,10 @@ void Game::run()
 }
 
 
-
-void Game::close()
-{
-	
+void Game::close(){
+	delete StartingScreen;
 	delete gamescreen;
-
+	delete FinishingScreen;
 	//Destroy window
 	SDL_DestroyRenderer(gRenderer);
 	SDL_DestroyWindow(gWindow);
