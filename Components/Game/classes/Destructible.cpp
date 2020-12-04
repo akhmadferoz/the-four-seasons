@@ -4,13 +4,13 @@ Destructible::Destructible(Type type, SDL_Renderer *renderer)
 {
     this -> type = type;
 
-    SDL_Rect *objectLocation = new SDL_Rect({Constants::SCREEN_WIDTH, Constants::SCREEN_HEIGHT - 80, 44, 60});
+    SDL_Rect *objectLocation; 
     Image *image;
     //Image *image = new Image(NULL, "germ.png");
 
     if (type == Obstacle){
 
-    
+    objectLocation = new SDL_Rect({Constants::SCREEN_WIDTH, Constants::SCREEN_HEIGHT - 80, 44, 60});
     SDL_Rect rects[] = {
         {126, 5, 15, 19},
         {110, 5, 15, 19},
@@ -29,6 +29,8 @@ Destructible::Destructible(Type type, SDL_Renderer *renderer)
     image = new Image(assetLocations, "badKnight.png");
 
     }else{
+    objectLocation = new SDL_Rect({Constants::SCREEN_WIDTH, Constants::SCREEN_HEIGHT - 80, 60, 60});
+
  image = new Image(NULL, "shield.png");
 
     }
