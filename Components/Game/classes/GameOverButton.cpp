@@ -1,14 +1,14 @@
-#pragma once
-
-#include "../headers/NewGameButton.hpp"
 
 
-NewGameButton::NewGameButton(SDL_Renderer* renderer): Button(renderer) {
+#include "../headers/GameOverButton.hpp"
+
+
+GameOverButton::GameOverButton(SDL_Renderer* renderer): Button(renderer) {
 
  
 }
 
-int NewGameButton::onClick(SDL_Event e, int* whichscreen) {
+int GameOverButton::onClick(SDL_Event e, int* whichscreen) {
     int mouse_x{}, mouse_y{};
     switch (e.type)
     {
@@ -20,7 +20,7 @@ int NewGameButton::onClick(SDL_Event e, int* whichscreen) {
             mouse_x <= 700 + 200 &&
             mouse_y <= 300 + 100)
         {
-            *whichscreen=1;
+            *whichscreen=0;
         }
         break;
     case SDL_MOUSEBUTTONUP:
@@ -30,7 +30,7 @@ int NewGameButton::onClick(SDL_Event e, int* whichscreen) {
     return *whichscreen;
 }
 
-void NewGameButton::render() {
+void GameOverButton::render() {
     SDL_Rect* locationStart = new SDL_Rect({700, 300, 200, 100});
     
     SDL_Rect rects[] = {{0, 0, 314, 69}};
@@ -42,7 +42,7 @@ void NewGameButton::render() {
         assetLocations.push_back(imageLocation);
     }
 
-    Image* image = new Image(assetLocations, "start.png");
+    Image* image = new Image(assetLocations, "gameover.png");
 
     Draw *object = new Draw(gRenderer, image, locationStart);
 
@@ -50,6 +50,6 @@ void NewGameButton::render() {
 
 }
 
-NewGameButton::~NewGameButton() {
+GameOverButton::~GameOverButton() {
     
 }

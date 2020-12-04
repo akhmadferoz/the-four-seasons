@@ -14,7 +14,7 @@
 #include "./Game/headers/GameScreen.hpp"
 #include "./Game/headers/Screen.hpp"
 #include "./Game/headers/Menu.hpp"
-
+#include "./Game/headers/EndingScreen.hpp"
 
 class Game
 {
@@ -30,6 +30,7 @@ class Game
 
     Screen *gamescreen;
     Screen *StartingScreen;
+    Screen *FinishingScreen;
 
     Mix_Music *bgMusic = NULL;
 

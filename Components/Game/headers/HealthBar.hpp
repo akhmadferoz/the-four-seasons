@@ -4,7 +4,7 @@
 #include <vector>
 
 class HealthBar{
-    int totalHealth = 0;
+    // int totalHealth = 0;
     int currentHealth = 0;
      int interimSpace = 30;
     vector<Life *> lives;
@@ -14,7 +14,7 @@ class HealthBar{
     public:
         void lostLife();
         void gainedLife();
-
+        bool isDead();
         void draw();
         HealthBar( SDL_Renderer *, int);
         ~HealthBar();

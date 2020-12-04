@@ -87,6 +87,8 @@ void Game::run()
 {
 	StartingScreen = new Menu(gRenderer);
 	gamescreen = new GameScreen(gRenderer);
+	FinishingScreen = new EndingScreen(gRenderer);
+
 	
 	//bool quit;
 	SDL_Event e;
@@ -106,9 +108,11 @@ void Game::run()
 			}
 
 			if (whichScreen == 1) {
-				delete StartingScreen;
-				StartingScreen=nullptr;
 				gamescreen -> inputHandler(e, &whichScreen);
+			}
+
+			if (whichScreen == 2) {
+				FinishingScreen -> inputHandler(e, &whichScreen);	
 			}
 		
 
@@ -127,6 +131,10 @@ void Game::run()
 		gamescreen -> renderObjects();
 		}
 
+		else if (whichScreen == 2) {
+			FinishingScreen -> renderObjects();
+		}
+
 		SDL_RenderPresent(gRenderer); 
 		SDL_Delay(200);
 	}
@@ -137,7 +145,7 @@ void Game::close()
 {
 	delete StartingScreen;
 	delete gamescreen;
-
+	delete FinishingScreen;
 	//Destroy window
 	SDL_DestroyRenderer(gRenderer);
 	SDL_DestroyWindow(gWindow);

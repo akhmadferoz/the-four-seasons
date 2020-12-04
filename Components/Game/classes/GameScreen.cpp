@@ -84,11 +84,13 @@ void GameScreen::renderObjects()
 			}else{
 			healthBar -> gainedLife();
 
-			}			
-			
-			object -> onHit();
+			}  
 
-			
+			if (healthBar -> isDead() ) {
+				// whichScreen
+			}
+
+			object -> onHit();
 			
       		//invalidObjects.push_back(x);
 
@@ -96,6 +98,8 @@ void GameScreen::renderObjects()
 			SoundManager::playEffect(SoundManager::COLLIDE);
 		}
 		
+
+
 	}
 
 		//cout << "Checked for invalid objects" << endl;
@@ -158,6 +162,10 @@ void GameScreen::inputHandler(SDL_Event e, int* whichscreen) {
       player -> danceAnimation();
         //SoundManager::playEffect(SoundManager::ATTACK);
     }	
+
+	if (healthBar -> isDead() ) {
+		*whichscreen = 2;
+	}
 }
 
 GameScreen::GameScreen(SDL_Renderer * renderer) : Screen(renderer) {

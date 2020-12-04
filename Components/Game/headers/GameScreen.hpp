@@ -24,9 +24,7 @@ class GameScreen : public Screen{
     int gameClock = 1;
 
 public:
-
     GameScreen(SDL_Renderer *);
-
     void inputHandler(SDL_Event , int*);
     void renderObjects();
     void addObjects();

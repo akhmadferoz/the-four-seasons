@@ -2,9 +2,6 @@
 
 
 
-
-
-
 HealthBar::HealthBar( SDL_Renderer *renderer, int max){
 
    currentHealth = max;
@@ -46,4 +43,8 @@ void HealthBar::draw(){
       for(Life *life : lives){
         delete life;
     }
+ }
+
+ bool HealthBar::isDead() {
+     return currentHealth == 0;
  }

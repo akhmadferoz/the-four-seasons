@@ -2,7 +2,7 @@
 
 #include <SDL.h>
 #include "./Draw.hpp"
-
+#include "./HealthBar.hpp"
 
 class Screen {
 
