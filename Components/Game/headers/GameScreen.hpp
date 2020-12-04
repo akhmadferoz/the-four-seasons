@@ -19,7 +19,7 @@ class GameScreen : public Screen{
     Player *player;
     //std::vector<Draw*> background_objects;
     std::vector<Destructible*> destructibles;
-
+    Button* pauseGame;
     HealthBar *healthBar;
     int gameClock = 1;
 
