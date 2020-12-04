@@ -32,6 +32,7 @@ void GameScreen::renderObjects(){
 	GameState *s = s->getInstance();
 	s ->gameTime++;
 
+
 	createObstacles();
 	background -> drawObject();
 	healthBar -> draw();
@@ -102,7 +103,13 @@ void GameScreen::inputHandler(SDL_Event e, int* whichscreen){
         SoundManager::playEffect(SoundManager::ATTACK);
     }	
 
-	if (healthBar -> isDead()){
+    if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE ) {
+    
+		*whichscreen = 3;
+    }
+
+
+	if (healthBar -> isDead() ) {
 		*whichscreen = 2;
 	}
 }

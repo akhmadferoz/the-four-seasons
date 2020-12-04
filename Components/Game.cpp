@@ -85,7 +85,7 @@ void Game::run(){
 	StartingScreen = new Menu(gRenderer);
 	gamescreen = new GameScreen(gRenderer);
 	FinishingScreen = new EndingScreen(gRenderer);
-
+	pausedScreen = new PauseScreen(gRenderer); 
 	
 	//bool quit;
 	SDL_Event e;
@@ -108,6 +108,10 @@ void Game::run(){
 				gamescreen -> inputHandler(e, &whichScreen);
 			}
 
+			if (whichScreen == 3) {
+				pausedScreen -> inputHandler(e, &whichScreen);
+			}
+
 			if (whichScreen == 2) {
 				FinishingScreen -> inputHandler(e, &whichScreen);	
 			}
@@ -125,6 +129,10 @@ void Game::run(){
 
 		else if (whichScreen == 1) {
 		gamescreen -> renderObjects();
+		}
+
+		if (whichScreen == 3) {
+			pausedScreen -> renderObjects();
 		}
 
 		else if (whichScreen == 2) {
