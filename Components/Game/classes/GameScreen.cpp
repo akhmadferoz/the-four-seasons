@@ -48,7 +48,6 @@ void GameScreen::renderObjects()
 	GameState *s = s->getInstance();
 	s ->gameTime++;
 
-	pauseGame -> render();
 
 	createObstacles();
 
@@ -175,8 +174,6 @@ void GameScreen::inputHandler(SDL_Event e, int* whichscreen) {
 	if (healthBar -> isDead() ) {
 		*whichscreen = 2;
 	}
-
-	*whichscreen = pauseGame -> onClick(e, whichscreen);
 }
 
 GameScreen::GameScreen(SDL_Renderer * renderer) : Screen(renderer) {
