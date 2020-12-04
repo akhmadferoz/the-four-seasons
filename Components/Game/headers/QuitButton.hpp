@@ -1,6 +1,10 @@
 #pragma once
 #include "Button.hpp"
 
+/**
+ * \brief This contains the button for the Quit Game option
+*/
+
 class QuitButton: public Button {
     public:
     QuitButton(SDL_Renderer*);

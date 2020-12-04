@@ -17,8 +17,7 @@
 #include "./Game/headers/PauseScreen.hpp"
 #include "./Game/headers/EndingScreen.hpp"
 
-class Game
-{
+class Game{
     //Screen dimension constants
     const int SCREEN_WIDTH = Constants::SCREEN_WIDTH;
     const int SCREEN_HEIGHT = Constants::SCREEN_HEIGHT;
@@ -35,12 +34,9 @@ class Game
     Screen *pausedScreen;
 
     Mix_Music *bgMusic = NULL;
-
     int whichScreen{};
+
 public:
-	//GameState *gameState = gameState->getInstance();
-
-
     bool init();
     void close();
     SDL_Texture *loadTexture(std::string path);

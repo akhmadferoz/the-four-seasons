@@ -4,7 +4,11 @@
 #include "./Draw.hpp"
 #include "./HealthBar.hpp"
 
-class Screen {
+/**
+ * \brief This class is for the rendering of the different screens that we have in our game
+*/
+
+class Screen{
 
     protected:
     SDL_Renderer* gRenderer;
