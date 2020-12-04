@@ -33,7 +33,7 @@ int GameOverButton::onClick(SDL_Event e, int* whichscreen) {
 void GameOverButton::render() {
     SDL_Rect* locationStart = new SDL_Rect({700, 300, 200, 100});
     
-    SDL_Rect rects[] = {{0, 0, 314, 69}};
+    SDL_Rect rects[] = {{0, 0, 551, 89}};
 
     std::vector<SDL_Rect *> assetLocations;
     for (SDL_Rect rect : rects)
