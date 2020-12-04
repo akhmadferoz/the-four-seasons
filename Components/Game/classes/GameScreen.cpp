@@ -6,7 +6,6 @@ void GameScreen::addObjects()
 	Character *character = new Character(Character::MainCharacter, location, gRenderer);
 	player = new Player(character);
 
-	pauseGame = new PauseButton(gRenderer);
 
 	GameState *s = s->getInstance();
 

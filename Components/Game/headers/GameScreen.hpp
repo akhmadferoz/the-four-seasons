@@ -10,7 +10,6 @@
 #include "../headers/Player.hpp"
 #include "./HealthBar.hpp"
 #include "./Screen.hpp"
-#include "../headers/PauseButton.hpp"
 #include "../headers/Destructible.hpp"
 
 
@@ -19,7 +18,6 @@ class GameScreen : public Screen{
     Player *player;
     //std::vector<Draw*> background_objects;
     std::vector<Destructible*> destructibles;
-    Button* pauseGame;
     HealthBar *healthBar;
     int gameClock = 1;
 
