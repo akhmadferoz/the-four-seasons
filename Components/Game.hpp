@@ -14,6 +14,7 @@
 #include "./Game/headers/GameScreen.hpp"
 #include "./Game/headers/Screen.hpp"
 #include "./Game/headers/Menu.hpp"
+#include "./Game/headers/PauseScreen.hpp"
 #include "./Game/headers/EndingScreen.hpp"
 
 class Game
@@ -31,6 +32,7 @@ class Game
     Screen *gamescreen;
     Screen *StartingScreen;
     Screen *FinishingScreen;
+    Screen *pausedScreen;
 
     Mix_Music *bgMusic = NULL;
 
@@ -43,6 +45,5 @@ public:
     void close();
     SDL_Texture *loadTexture(std::string path);
     void run();
-
-
 };
+

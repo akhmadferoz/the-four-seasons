@@ -6,6 +6,7 @@ void GameScreen::addObjects()
 	Character *character = new Character(Character::MainCharacter, location, gRenderer);
 	player = new Player(character);
 
+	pauseGame = new PauseButton(gRenderer);
 
 	GameState *s = s->getInstance();
 
@@ -47,6 +48,8 @@ void GameScreen::renderObjects()
 	
 	GameState *s = s->getInstance();
 	s ->gameTime++;
+
+	pauseGame -> render();
 
 	createObstacles();
 
@@ -163,9 +166,18 @@ void GameScreen::inputHandler(SDL_Event e, int* whichscreen) {
         //SoundManager::playEffect(SoundManager::ATTACK);
     }	
 
+
+    if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE ) {
+    
+		*whichscreen = 3;
+    }
+
+
 	if (healthBar -> isDead() ) {
 		*whichscreen = 2;
 	}
+
+	*whichscreen = pauseGame -> onClick(e, whichscreen);
 }
 
 GameScreen::GameScreen(SDL_Renderer * renderer) : Screen(renderer) {
