@@ -10,7 +10,7 @@
 #include "../headers/Player.hpp"
 #include "./HealthBar.hpp"
 #include "./Screen.hpp"
-
+#include "../headers/PauseButton.hpp"
 #include "../headers/Destructible.hpp"
 
 
