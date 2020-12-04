@@ -1,3 +1,4 @@
+#pragma once
 // Libraries
 #include "string"
 #include <iostream>

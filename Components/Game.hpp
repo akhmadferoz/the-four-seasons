@@ -9,10 +9,11 @@
 #include <thread>
 #include <SDL_thread.h>
 
+#pragma once
+
 #include "./Game/headers/GameScreen.hpp"
-
-
-
+#include "./Game/headers/Screen.hpp"
+#include "./Game/headers/Menu.hpp"
 
 
 class Game
@@ -27,12 +28,12 @@ class Game
     //The window renderer
     SDL_Renderer *gRenderer = NULL;
 
-    GameScreen *gamescreen;
+    Screen *gamescreen;
+    Screen *StartingScreen;
 
     Mix_Music *bgMusic = NULL;
-   
 
-
+    int whichScreen{};
 public:
 	//GameState *gameState = gameState->getInstance();
 
@@ -42,6 +43,5 @@ public:
     SDL_Texture *loadTexture(std::string path);
     void run();
 
-    
 
 };

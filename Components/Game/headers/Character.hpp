@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef DRAW
 #define DRAW
 #include "./Draw.hpp"

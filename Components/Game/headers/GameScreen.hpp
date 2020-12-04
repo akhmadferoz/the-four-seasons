@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef DRAW
 #define DRAW
 #include "./Draw.hpp"
@@ -7,29 +9,25 @@
 
 #include "../headers/Player.hpp"
 #include "./HealthBar.hpp"
+#include "./Screen.hpp"
 
 #include "../headers/Destructible.hpp"
 
 
-class GameScreen{
-
+class GameScreen : public Screen{
 
     Player *player;
-    Draw *background;
     //std::vector<Draw*> background_objects;
     std::vector<Destructible*> destructibles;
 
     HealthBar *healthBar;
-
-    SDL_Renderer *gRenderer;
-
     int gameClock = 1;
 
 public:
 
     GameScreen(SDL_Renderer *);
 
-    void inputHandler(SDL_Event e);
+    void inputHandler(SDL_Event , int*);
     void renderObjects();
     void addObjects();
     void createObstacles();

@@ -1,4 +1,4 @@
-
+#pragma once
 
 #include "./Life.hpp"
 #include <vector>

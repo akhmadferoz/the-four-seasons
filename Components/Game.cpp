@@ -1,11 +1,10 @@
 // Includes
 #include "./Game.hpp"
 #include <string>
-
 bool Game::init()
 {
-
-	//Initialize SDL
+	whichScreen=0;
+		//Initialize SDL
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		printf("SDL could not initialize! SDL Error: %s\n", SDL_GetError());
@@ -86,36 +85,47 @@ SDL_Texture *Game::loadTexture(std::string path)
 
 void Game::run()
 {
-
+	StartingScreen = new Menu(gRenderer);
 	gamescreen = new GameScreen(gRenderer);
-	GameState *state = state -> getInstance(); 
+	
 	//bool quit;
 	SDL_Event e;
 
 	while (true)
 	{
-
+		cout << whichScreen << endl;
 		//Handling the events
-		while (SDL_PollEvent(&e) != 0)
-		{
-
-			if (e.type == SDL_QUIT)
+		SDL_PollEvent(&e);
+		
+			if (e.type == SDL_QUIT || whichScreen==-1)
 			{
 				return;
 			}
+			if (whichScreen==0) {
+				StartingScreen -> inputHandler(e, &whichScreen);
+			}
 
-			gamescreen -> inputHandler(e);
-
-		}
+			if (whichScreen == 1) {
+				delete StartingScreen;
+				StartingScreen=nullptr;
+				gamescreen -> inputHandler(e, &whichScreen);
+			}
+		
 
 		if (Mix_PlayingMusic() == 0)
 		{
-			bgMusic = SoundManager::playMusic();
+			// bgMusic = SoundManager::playMusic();
 		}
 
-		SDL_RenderClear(gRenderer); 
-		
+		SDL_RenderClear(gRenderer);
+
+		if (whichScreen == 0) {
+		StartingScreen -> renderObjects();
+		}
+
+		else if (whichScreen == 1) {
 		gamescreen -> renderObjects();
+		}
 
 		SDL_RenderPresent(gRenderer); 
 		SDL_Delay(200);
@@ -123,10 +133,9 @@ void Game::run()
 }
 
 
-
 void Game::close()
 {
-	
+	delete StartingScreen;
 	delete gamescreen;
 
 	//Destroy window

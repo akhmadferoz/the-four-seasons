@@ -129,15 +129,10 @@ void GameScreen::renderObjects()
 	
 }
 
-void GameScreen::inputHandler(SDL_Event e) {
+void GameScreen::inputHandler(SDL_Event e, int* whichscreen) {
     if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RIGHT ) {
 
-		
-
         player -> move = Player::RIGHT;
-
-
-
 
     }
     if (e.type == SDL_KEYUP && e.key.keysym.sym == SDLK_RIGHT ) {
@@ -165,12 +160,8 @@ void GameScreen::inputHandler(SDL_Event e) {
     }	
 }
 
-GameScreen::GameScreen(SDL_Renderer * renderer){
-    gRenderer = renderer;
+GameScreen::GameScreen(SDL_Renderer * renderer) : Screen(renderer) {
     addObjects();
-
-	
-
 }
 
 GameScreen::~GameScreen(){
